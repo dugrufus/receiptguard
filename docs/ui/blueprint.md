@@ -63,5 +63,8 @@ See acceptance-matrix.md for sectioned checklists.
 See acceptance-matrix.md for sectioned checklists.
 [RG:BLOCK DOCS.BLUEPRINT END]
 
-
-
+[RG:BLOCK DOCS.BLUEPRINT.SCORING START]
+## Scoring Heuristics (Next Step)
+Define factor weights for refund likelihood and effort (e.g., policy match, time remaining, receipt quality, item category).
+Capture heuristic in mocks and keep this section as the living spec.
+[RG:BLOCK DOCS.BLUEPRINT.SCORING END]

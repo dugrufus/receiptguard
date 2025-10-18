@@ -173,3 +173,27 @@ Owner: UI
 - REQUEST 08 — [RG:BLOCK PM.RULES] — price-match page rules checklist.
 - REQUEST 08 — [RG:BLOCK PM.DRAFT] — price-match draft composer.
 - REQUEST 08 — [RG:BLOCK PD.CHEAPER_BANNER] — banner on Purchase Details.
+
+<!-- [RG:BLOCK REGISTRY.REQUEST-09 START] -->
+### REQUEST 09 — Recall Watch + Warranty Wallet
+- **[RG:BLOCK HOME.SAFETY]** — Home card: Safety notices with count badge.
+- **[RG:BLOCK RECALL.DETAIL]** — Recall detail: hazard, remedy, affected models, CTA.
+- **[RG:BLOCK SET.WARRANTY]** — Settings: Warranty wallet with coverage end date.
+<!-- [RG:BLOCK REGISTRY.REQUEST-09 END] -->
+
+### REQ-10 — Smart Return Combinator
+
+- **HOME.RETURNS_COMBINE_CHIP** — Home chip: ""Combine returns""
+- **RET.COMBINE** — Route marker at /return/combine/[merchant]: selector, combined weight/ETA, label/pickup, deadline warnings
+
+[RG:BLOCK DOCS.MARKERS.REQ12 START]
+### Request 12 — Refund Likelihood & Effort Score
+
+- **SCORE.PILL** — Component region inside pps/web/src/components/rg/ScorePill.tsx showing High/Medium/Low + approx minutes.
+- **SCORE.WHY** — Component region inside pps/web/src/components/rg/ScoreWhyDrawer.tsx listing factors (policy match, receipt quality, time remaining).
+- **HOME.PRICE_DROP_SCORE** — Injection slot on Home price-drop cards.
+- **HOME.RETURN_SCORE** — Injection slot on Home return-window cards.
+- **PD.SCORE** — Injection slot on Purchase Details page.
+
+_Added by Request #12; purpose: expose a visible score and a "Why?" drawer on actionable cards._
+[RG:BLOCK DOCS.MARKERS.REQ12 END]

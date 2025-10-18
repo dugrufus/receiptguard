@@ -172,5 +172,45 @@
     "banner": {
       "cheaper": "Lower price found — Start price-match"
     }
+  },
+  "warranty": {
+    "title": "Warranty",
+    "endsIn": "Coverage ends {date}"
+  },
+  "recall": {
+    "remedy": "Remedy",
+    "affected": "Affected models",
+    "cta": "Start remedy",
+    "hazard": "Hazard",
+    "title": "Safety notices"
+  },
+  "combine": {
+    "labelOption": "Shipping label",
+    "warning": {
+      "deadline": "Some items are near the return deadline"
+    },
+    "selectItems": "Select items to return",
+    "pickupOption": "Pickup",
+    "title": "Combine returns"
+  },
+  "ish": {
+    "outcome": {
+      "approved": "Approved",
+      "later": "Try later",
+      "denied": "Denied"
+    },
+    "title": "In-Store Price Adjust",
+    "script": "Hi! I purchased this item recently and found a lower price at a competitor. Could you help with a price adjustment? I have the receipt and the competitor link/QR here. Thank you!"
+  },
+  "score": {
+    "pill": {
+      "low": "Low",
+      "high": "High",
+      "medium": "Medium",
+      "minutesApprox": "≈ {minutes} min"
+    },
+    "why": {
+      "title": "Why this score?"
+    }
   }
 }

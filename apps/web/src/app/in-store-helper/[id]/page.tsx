@@ -1,0 +1,79 @@
+"use client";
+
+import { use, useState } from "react";
+import type { JSX } from "react";
+import strings from "../../../rg/copy/strings.json";
+
+// client-safe mini translator (reads nested keys from strings.json)
+const t = (k: string): string => {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return k.split(".").reduce<any>((o, p) => (o ? (o as any)[p] : undefined), strings as any) ?? k;
+  } catch {
+    return k;
+  }
+};
+
+export default function Page({ params }: { params: Promise<{ id: string }> }): JSX.Element {
+  const { id } = use(params);
+  const [outcome, setOutcome] = useState<"approved" | "denied" | "later" | "">("");
+
+  return (
+    <main className="p-4 max-w-md mx-auto">
+      <h1 className="text-xl font-semibold mb-3">{t("ish.title")}</h1>
+
+      {/* [RG:BLOCK ISH.CONTENT START] */}
+      <section className="space-y-4">
+        {/* 60-second script */}
+        <div className="p-4 rounded-2xl border bg-white/50">
+          <p className="text-sm leading-relaxed">{t("ish.script")}</p>
+        </div>
+
+        {/* Barcode + Competitor QR */}
+        <div className="grid grid-cols-2 gap-4 items-center">
+          <div className="p-3 rounded-xl border bg-white">
+            <div
+              role="img"
+              aria-label={`Barcode for order ${id}`}
+              className="h-16 w-full rounded bg-white border overflow-hidden"
+            >
+              <div className="h-full w-full [background:repeating-linear-gradient(90deg,#000_0_2px,transparent_2px_6px)]" />
+            </div>
+            <p className="mt-1 text-xs text-center">#<span>{id}</span></p>
+          </div>
+
+          <div className="p-3 rounded-xl border bg-white flex flex-col items-center">
+            <div
+              role="img"
+              aria-label="QR code for competitor link"
+              className="size-24 rounded border overflow-hidden"
+              title="Competitor QR"
+            >
+              <div className="w-full h-full [background:conic-gradient(from_45deg,black_0_90deg,white_90deg_180deg,black_180deg_270deg,white_270deg_360deg)] [mask:radial-gradient(circle,black_60%,transparent_61%)]" />
+            </div>
+            <p className="mt-1 text-xs opacity-70 text-center">Scan competitor</p>
+          </div>
+        </div>
+
+        {/* Outcomes */}
+        <div className="flex gap-2">
+          <button onClick={() => setOutcome("approved")} className="px-3 py-2 rounded-2xl border focus:outline-none focus:ring">
+            {t("ish.outcome.approved")}
+          </button>
+          <button onClick={() => setOutcome("denied")} className="px-3 py-2 rounded-2xl border focus:outline-none focus:ring">
+            {t("ish.outcome.denied")}
+          </button>
+          <button onClick={() => setOutcome("later")} className="px-3 py-2 rounded-2xl border focus:outline-none focus:ring">
+            {t("ish.outcome.later")}
+          </button>
+        </div>
+
+        {/* aria-live outcome note */}
+        <div aria-live="polite" className="text-sm min-h-[1.25rem]">
+          {outcome ? <span>{t(`ish.outcome.${outcome}`)}</span> : null}
+        </div>
+      </section>
+      {/* [RG:BLOCK ISH.CONTENT END] */}
+    </main>
+  );
+}

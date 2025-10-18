@@ -1,0 +1,13 @@
+'use client';
+
+/**
+ * [RG:BLOCK RET.COMBINE START]
+ * Purpose: Selector of items; combined weight/ETA; chosen label/pickup option; near-deadline warnings.
+ * Copy keys: t('combine.title'), t('combine.selectItems'), t('combine.labelOption'), t('combine.pickupOption'), t('combine.warning.deadline')
+ * [RG:BLOCK RET.COMBINE END]
+ */
+
+export default function CombineReturnPage() {
+  // TODO: Wire real data & i18n t() helper. Scaffold only.
+  return null;
+}

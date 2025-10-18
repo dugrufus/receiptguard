@@ -1,4 +1,5 @@
 import BottomNav from '../../components/rg/BottomNav';
+import { t } from '@/rg/copy'
 import Card from '../../components/rg/Card';
 import CollapsibleSection from '../../components/rg/CollapsibleSection';
 import { t } from '../../rg/i18n/t';
@@ -21,3 +22,16 @@ export default function HomePage() {
     </main>
   );
 }
+
+{/* [RG:BLOCK HOME.SAFETY START] */}
+<section role="region" aria-labelledby="home-safety" className="rounded-2xl border p-4 flex items-center justify-between">
+  <h2 id="home-safety" className="text-base font-medium">{t('recall.title')}</h2>
+  <span aria-label="notice count" className="inline-flex items-center justify-center min-w-8 h-8 rounded-full border text-sm">{0}</span>
+</section>
+{/* [RG:BLOCK HOME.SAFETY END] */}
+
+
+// // // [RG:BLOCK HOME.RETURNS_COMBINE_CHIP START]
+// Chip: ""Combine returns"" — link to /return/combine/[merchant]
+// NOTE: Hook up to t('combine.title') per copy rules.
+// [RG:BLOCK HOME.RETURNS_COMBINE_CHIP END]

@@ -1,3 +1,4 @@
+import { t } from '@/rg/copy'
 'use client';
 
 import React, { useState } from 'react';
@@ -98,3 +99,10 @@ export default function SettingsPage() {
     </main>
   );
 }
+
+{/* [RG:BLOCK SET.WARRANTY START] */}
+<section role="region" aria-labelledby="warranty-wallet" className="rounded-2xl border p-4">
+  <h2 id="warranty-wallet" className="text-lg font-semibold">{t('warranty.title')}</h2>
+  <p className="text-sm opacity-80">{t(''warranty.endsIn'')}</p>
+</section>
+{/* [RG:BLOCK SET.WARRANTY END] */}

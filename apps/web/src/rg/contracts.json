@@ -1,0 +1,29 @@
+{
+  "__examples": {
+    "recallNotice": {
+      "updatedAt": "2025-01-01T00:00:00Z",
+      "source": "CPSC",
+      "remedy": "Free replacement battery",
+      "hazard": "Overheating risk",
+      "title": "Widget 2000 Battery Recall",
+      "createdAt": "2025-01-01T00:00:00Z",
+      "id": "rec-123",
+      "affectedModels": [
+        "WID-2000",
+        "WID-2001"
+      ]
+    }
+  },
+  "RecallNotice": {
+    "updatedAt": "ISO8601",
+    "source": "string",
+    "remedy": "string",
+    "hazard": "string",
+    "title": "string",
+    "createdAt": "ISO8601",
+    "id": "string",
+    "affectedModels": [
+      "string"
+    ]
+  }
+}
