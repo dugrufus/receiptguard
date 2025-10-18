@@ -1,0 +1,12 @@
+﻿{
+    "name":  "receiptguard-monorepo",
+    "private":  true,
+    "workspaces":  [
+                       "apps/*"
+                   ],
+    "scripts":  {
+                    "build":  "echo placeholder",
+                    "dev":  "echo run Request scripts first"
+                },
+    "packageManager":  "pnpm@10.18.3"
+}

@@ -1,0 +1,50 @@
+{
+  "__RG_MARKER_BLOCK": "[RG:BLOCK DOCS.CONTRACTS START] Canonical sample payloads [RG:BLOCK DOCS.CONTRACTS END]",
+  "Purchase": {
+    "id": "pur_123",
+    "merchant": "ACME",
+    "title": "Widget 3000",
+    "skuOrModel": "W-3000",
+    "priceCents": 12999,
+    "purchaseDateISO": "2025-09-12T10:15:00Z",
+    "returnByISO": "2025-10-12T23:59:59Z",
+    "status": "OWNED",
+    "thumbUrl": "https://cdn.example.com/p/w3000.png"
+  },
+  "Offer": {
+    "id": "off_456",
+    "merchant": "ACME",
+    "title": "Widget 3000",
+    "itemPriceCents": 11999,
+    "shippingCents": 0,
+    "estimatedTaxCents": 960,
+    "totalCents": 12959,
+    "deliveryDays": 3,
+    "condition": "NEW",
+    "pickupAvailable": true
+  },
+  "Event": {
+    "id": "evt_789",
+    "kind": "CLAIM_SENT",
+    "atISO": "2025-10-01T16:00:00Z",
+    "summary": "Claim submitted",
+    "relatedId": "claim_001"
+  },
+  "Message": {
+    "id": "msg_001",
+    "threadId": "thr_001",
+    "atISO": "2025-10-01T16:05:00Z",
+    "from": "you",
+    "to": [
+      "support"
+    ],
+    "text": "Hello",
+    "direction": "OUT"
+  },
+  "RecallNotice": {
+    "id": "rec_001",
+    "product": "Widget 3000",
+    "issuedAtISO": "2025-10-10T08:00:00Z",
+    "summary": "Safety advisory"
+  }
+}

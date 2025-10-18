@@ -1,0 +1,11 @@
+{
+  "text": "Hello",
+  "atISO": "2025-10-01T16:05:00Z",
+  "direction": "OUT",
+  "to": [
+    "support"
+  ],
+  "id": "msg_001",
+  "threadId": "thr_001",
+  "from": "you"
+}

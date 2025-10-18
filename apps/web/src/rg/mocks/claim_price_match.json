@@ -1,0 +1,8 @@
+{
+  "amountCents": 150,
+  "purchaseId": "pur_1111",
+  "details": {
+    "notes": "Competitor offer matched."
+  },
+  "type": "price_match"
+}

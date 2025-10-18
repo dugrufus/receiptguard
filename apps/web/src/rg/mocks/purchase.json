@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "name": "Widget A",
+      "sku": "WIDGET-A",
+      "id": "itm_1",
+      "unitPriceCents": 1299,
+      "quantity": 2
+    }
+  ],
+  "orderNumber": "****1234",
+  "merchantName": "Contoso",
+  "totalCents": 2598,
+  "placedAt": "2025-10-10T19:22:00Z",
+  "currency": "USD",
+  "id": "pur_1111"
+}

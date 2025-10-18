@@ -1,0 +1,196 @@
+{
+  "home": {
+    "title": "Your dashboard",
+    "sections": {
+      "tracking": {
+        "title": "Tracking"
+      },
+      "priceDrops": {
+        "title": "Price drops"
+      },
+      "purchases": {
+        "title": "Purchases"
+      },
+      "returns": {
+        "title": "Returns"
+      }
+    },
+    "priceDrops": {
+      "title": "Price drops"
+    },
+    "returnWindows": {
+      "title": "Return windows"
+    },
+    "tracking": {
+      "title": "Tracking"
+    },
+    "purchases": {
+      "title": "Purchases"
+    }
+  },
+  "activity": {
+    "title": "Activity",
+    "filters": {
+      "all": "All",
+      "delivery": "Delivery",
+      "messages": "Messages",
+      "claims": "Claims",
+      "returns": "Returns"
+    },
+    "backToHome": "Back to Home"
+  },
+  "settings": {
+    "title": "Settings",
+    "privacy": {
+      "banner": "We only scan receipts, confirmations, and shipping updates you choose. You can pause or revoke access anytime."
+    },
+    "scope": {
+      "receipts": "Receipts",
+      "confirmations": "Confirmations",
+      "includeMerchants": "Include merchants (comma-separated)",
+      "shipping": "Shipping",
+      "title": "Autocatch Scan Scope",
+      "previewCount": "Preview: {count} emails matched",
+      "excludeDomains": "Exclude email domains (comma-separated)"
+    },
+    "notifs": {
+      "dailyDigest": "Daily digest (America/Phoenix)",
+      "defaultTime": "9:00 AM",
+      "title": "Notifications"
+    },
+    "household": {
+      "invite": "Invite by email",
+      "title": "Household",
+      "role": {
+        "viewer": "Viewer",
+        "editor": "Editor",
+        "sender": "Sender"
+      }
+    }
+  },
+  "claim": {
+    "title": "Price-drop claim",
+    "items": {
+      "title": "Select items"
+    },
+    "amount": {
+      "policyCapHint": "Subject to policy caps",
+      "title": "Claim amount",
+      "inputLabel": "Requested percent"
+    },
+    "send": {
+      "cta": "Send claim"
+    },
+    "draft": {
+      "title": "Draft",
+      "tabs": {
+        "pdf": "PDF",
+        "email": "Email"
+      }
+    },
+    "toast": {
+      "queued": "Claim queued. Undo?",
+      "undo": "Undo"
+    }
+  },
+  "returns": {
+    "title": "Return",
+    "reason": {
+      "other": "Other",
+      "damaged": "Damaged",
+      "title": "Reason for return",
+      "wrong": "Wrong item",
+      "better": "Better price"
+    },
+    "urgency": {
+      "soon": "Return soon by {date}",
+      "verySoon": "Return very soon by {date}"
+    },
+    "confirm": {
+      "cta": "Submit return",
+      "title": "Confirm return"
+    },
+    "label": {
+      "store": "Use store label",
+      "title": "How will you return?",
+      "pickup": "Schedule a pickup",
+      "buy": "Buy shipping label"
+    },
+    "select": {
+      "title": "Select item"
+    }
+  },
+  "messages": {
+    "title": "Messages"
+  },
+  "bestPrice": {
+    "title": "Best price"
+  },
+  "history": {
+    "refunds": {
+      "title": "Refunds"
+    },
+    "savings": {
+      "title": "Savings"
+    }
+  },
+  "bottomNav": {
+    "settings": "Settings",
+    "home": "Home",
+    "history": "History",
+    "activity": "Activity"
+  },
+  "batch": {
+    "sections": {
+      "returnsSoon": "Returns due next 7 days",
+      "priceDrops": "Price drops",
+      "lateDeliveries": "Late deliveries"
+    },
+    "throttle": {
+      "note": "Max 1 message per merchant per hour"
+    },
+    "sendAll": "Send all",
+    "approveAll": "Approve all",
+    "title": "Batch Review"
+  },
+  "pm": {
+    "title": "Price Match",
+    "evidence": {
+      "title": "Evidence"
+    },
+    "rules": {
+      "title": "Eligibility rules",
+      "ineligible": "Not eligible: {reason}"
+    },
+    "draft": {
+      "title": "Draft message",
+      "concise": "Concise",
+      "detailed": "Detailed"
+    }
+  },
+  "pd": {
+    "banner": {
+      "cheaper": "Lower price found — Start price-match"
+    }
+  },
+  "warranty": {
+    "title": "Warranty",
+    "endsIn": "Coverage ends {date}"
+  },
+  "recall": {
+    "remedy": "Remedy",
+    "affected": "Affected models",
+    "cta": "Start remedy",
+    "hazard": "Hazard",
+    "title": "Safety notices"
+  },
+  "combine": {
+    "labelOption": "Shipping label",
+    "warning": {
+      "deadline": "Some items are near the return deadline"
+    },
+    "selectItems": "Select items to return",
+    "pickupOption": "Pickup",
+    "title": "Combine returns"
+  }
+}

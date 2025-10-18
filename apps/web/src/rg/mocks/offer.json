@@ -1,0 +1,8 @@
+{
+  "deliveryDays": 2,
+  "url": "https://example.com/widget-a",
+  "vendor": "Fabrikam",
+  "totalCents": 2399,
+  "purchaseId": "pur_1111",
+  "id": "off_1111"
+}

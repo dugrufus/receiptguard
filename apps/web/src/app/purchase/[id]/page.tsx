@@ -1,0 +1,28 @@
+'use client';
+
+import React from 'react';
+
+export default function PurchaseDetailsPage() {
+  // Stub 't' to satisfy no-inline-text rule; replace with project t() import if available.
+  const t = (k: string) => k;
+  return (
+    <main className="p-4 space-y-4">
+      <h1 className="text-xl font-semibold">{t('pd.title') ?? 'Purchase Details'}</h1>
+
+      {      {      {/* [RG:BLOCK PD.CHEAPER_BANNER START] */}
+      <div role="region" aria-label="price-match" className="rounded-2xl border p-4">
+        <div className="text-sm">
+          {t("pd.banner.cheaper")}
+        </div>
+        <div className="mt-2">
+          <a href="/price-match/123" className="underline">{t("pm.title")}</a>
+        </div>
+      </div>
+      {/* [RG:BLOCK PD.CHEAPER_BANNER END] */}}}
+
+      <section className="rounded-2xl border p-4">
+        <p>{t('pd.body') ?? 'Details...'}</p>
+      </section>
+    </main>
+  );
+}

@@ -1,0 +1,34 @@
+import Card from "../../components/rg/Card";
+import BottomNav from "../../components/rg/BottomNav";
+import { t } from "../../rg/i18n/t";
+
+export default function Page() {
+  return (
+    <main className="pb-20 p-4 space-y-4">
+      <h1 className="text-lg font-semibold">{t("settings.title")}</h1>
+
+      {/* [RG:BLOCK SET.SCOPE START] */}
+      <section aria-labelledby="scope">
+        <h2 id="scope" className="sr-only">{t("settings.sections.scope")}</h2>
+        <Card><div className="text-sm opacity-70">{t("settings.sections.scope")}</div></Card>
+      </section>
+      {/* [RG:BLOCK SET.SCOPE END] */}
+
+      {/* [RG:BLOCK SET.NOTIFS START] */}
+      <section aria-labelledby="notifications">
+        <h2 id="notifications" className="sr-only">{t("settings.sections.notifications")}</h2>
+        <Card><div className="text-sm opacity-70">{t("settings.sections.notifications")}</div></Card>
+      </section>
+      {/* [RG:BLOCK SET.NOTIFS END] */}
+
+      {/* [RG:BLOCK SET.HOUSEHOLD START] */}
+      <section aria-labelledby="household">
+        <h2 id="household" className="sr-only">{t("settings.sections.household")}</h2>
+        <Card><div className="text-sm opacity-70">{t("settings.sections.household")}</div></Card>
+      </section>
+      {/* [RG:BLOCK SET.HOUSEHOLD END] */}
+
+      <BottomNav />
+    </main>
+  );
+}

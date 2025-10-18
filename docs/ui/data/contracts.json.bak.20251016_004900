@@ -1,0 +1,61 @@
+{
+  "types": {
+    "MoneyCents": { "type": "integer", "min": 0 },
+    "PurchaseItem": {
+      "id": "itm_xxxxx",
+      "name": "Widget A",
+      "sku": "WIDGET-A",
+      "unitPriceCents": 1299,
+      "quantity": 1
+    },
+    "Purchase": {
+      "id": "pur_xxxxx",
+      "orderNumber": "****1234",
+      "merchantName": "Contoso",
+      "placedAt": "2025-10-13T14:12:00Z",
+      "currency": "USD",
+      "totalCents": 2598,
+      "items": [ { "": "PurchaseItem" } ]
+    },
+    "Offer": {
+      "id": "off_xxxxx",
+      "purchaseId": "pur_xxxxx",
+      "vendor": "Fabrikam",
+      "totalCents": 2399,
+      "deliveryDays": 3,
+      "url": "https://example.com/item"
+    },
+    "Claim": {
+      "type": "price_drop | price_match | late_delivery | recall | return",
+      "purchaseId": "pur_xxxxx",
+      "amountCents": 199,
+      "details": { "notes": "" }
+    }
+  },
+  "samples": {
+    "purchase": {
+      "id": "pur_1111",
+      "orderNumber": "****1234",
+      "merchantName": "Contoso",
+      "placedAt": "2025-10-10T19:22:00Z",
+      "currency": "USD",
+      "totalCents": 2598,
+      "items": [
+        { "id": "itm_1", "name": "Widget A", "sku": "WIDGET-A", "unitPriceCents": 1299, "quantity": 2 }
+      ]
+    },
+    "offer": {
+      "id": "off_1111",
+      "purchaseId": "pur_1111",
+      "vendor": "Fabrikam",
+      "totalCents": 2399,
+      "deliveryDays": 2,
+      "url": "https://example.com/widget-a"
+    },
+    "claim_price_drop":   { "type": "price_drop",   "purchaseId": "pur_1111", "amountCents": 199, "details": { "notes": "Detected lower price within window." } },
+    "claim_price_match":  { "type": "price_match",  "purchaseId": "pur_1111", "amountCents": 150, "details": { "notes": "Competitor offer matched." } },
+    "claim_late_delivery":{ "type": "late_delivery","purchaseId": "pur_1111", "amountCents": 500, "details": { "notes": "Shipment missed promised date." } },
+    "claim_recall":       { "type": "recall",       "purchaseId": "pur_1111", "amountCents": 0,   "details": { "notes": "Manufacturer recall." } },
+    "claim_return":       { "type": "return",       "purchaseId": "pur_1111", "amountCents": 2598, "details": { "notes": "Return within policy window." } }
+  }
+}
