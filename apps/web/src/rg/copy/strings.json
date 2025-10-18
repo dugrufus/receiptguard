@@ -139,5 +139,18 @@
     "home": "Home",
     "history": "History",
     "activity": "Activity"
+  },
+  "batch": {
+    "sections": {
+      "returnsSoon": "Returns due next 7 days",
+      "priceDrops": "Price drops",
+      "lateDeliveries": "Late deliveries"
+    },
+    "throttle": {
+      "note": "Max 1 message per merchant per hour"
+    },
+    "sendAll": "Send all",
+    "approveAll": "Approve all",
+    "title": "Batch Review"
   }
 }

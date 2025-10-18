@@ -160,3 +160,12 @@ Owner: UI
 [RG:BLOCK REGISTRY.ACTIVITY END]
 * [SET.SCOPE_DRAWER] SET.SCOPE_DRAWER — Request 06 — ScopeDrawer JSX content
 
+[RG:BLOCK REGISTRY.BATCH_REVIEW START]
+- **Request 07 — Batch Claim Day**
+  - Creates route pps/web/src/app/batch-review/page.tsx.
+  - Markers:
+    - [RG:BLOCK BATCH.HEADER START] … END — “Batch Review” title, “Approve all”, “Send all”.
+    - [RG:BLOCK BATCH.SECTIONS START] … END — Sections: Price drops, Late deliveries, Returns due next 7 days.
+    - [RG:BLOCK BATCH.FOOTER START] … END — Throttle note (“Max 1 message per merchant per hour”).
+  - Copy keys: atch.title, atch.approveAll, atch.sendAll, atch.sections.priceDrops, atch.sections.lateDeliveries, atch.sections.returnsSoon, atch.throttle.note.
+[RG:BLOCK REGISTRY.BATCH_REVIEW END]
