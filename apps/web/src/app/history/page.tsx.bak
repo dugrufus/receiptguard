@@ -1,0 +1,27 @@
+import Card from "../../components/rg/Card";
+import BottomNav from "../../components/rg/BottomNav";
+import { t } from "../../rg/i18n/t";
+
+export default function Page() {
+  return (
+    <main className="pb-20 p-4 space-y-4">
+      <h1 className="text-lg font-semibold">{t("history.title")}</h1>
+
+      {/* [RG:BLOCK HIST.SAVINGS START] */}
+      <section aria-labelledby="savings">
+        <h2 id="savings" className="sr-only">{t("history.tabs.savings")}</h2>
+        <Card><div className="text-sm opacity-70">{t("history.tabs.savings")}</div></Card>
+      </section>
+      {/* [RG:BLOCK HIST.SAVINGS END] */}
+
+      {/* [RG:BLOCK HIST.REFUNDS START] */}
+      <section aria-labelledby="refunds">
+        <h2 id="refunds" className="sr-only">{t("history.tabs.refunds")}</h2>
+        <Card><div className="text-sm opacity-70">{t("history.tabs.refunds")}</div></Card>
+      </section>
+      {/* [RG:BLOCK HIST.REFUNDS END] */}
+
+      <BottomNav />
+    </main>
+  );
+}

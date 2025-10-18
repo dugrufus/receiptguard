@@ -1,0 +1,112 @@
+# RG.Helpers.psm1 — Bootstrap helpers (fixed for safe temp files & string interpolation)
+# Encoding: UTF-8 (no BOM)
+
+function Ensure-Dir {
+  [CmdletBinding()] param([Parameter(Mandatory=$true)][string]$Path)
+  if (-not (Test-Path -LiteralPath $Path)) { New-Item -ItemType Directory -Force -Path $Path | Out-Null }
+}
+function Write-Utf8 {
+  [CmdletBinding()] param([string]$Path, [string]$Content)
+  $dir = Split-Path -Parent $Path
+  if ($dir -and -not (Test-Path -LiteralPath $dir)) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
+  $enc = New-Object System.Text.UTF8Encoding($false)
+  $tmp = Join-Path $dir (".tmp_" + [Guid]::NewGuid().ToString("N"))
+  [System.IO.File]::WriteAllText($tmp, $Content, $enc)
+  Move-Item -LiteralPath $tmp -Destination $Path -Force
+}
+function Write-IfChanged {
+  [CmdletBinding()] param([string]$Path, [string]$Content)
+  $existing = if (Test-Path -LiteralPath $Path) { [System.IO.File]::ReadAllText($Path) } else { '' }
+  if ($existing -ceq $Content) { return $false }
+  Write-Utf8 -Path $Path -Content $Content
+  return $true
+}
+function Replace-Block {
+  [CmdletBinding()] param([string]$Path, [string]$MarkerName, [string]$InnerContent)
+  $start = "[RG:BLOCK $MarkerName START]"
+  $end   = "[RG:BLOCK $MarkerName END]"
+  $block = "$start`r`n$InnerContent`r`n$end`r`n"
+  $text = if (Test-Path -LiteralPath $Path) { [System.IO.File]::ReadAllText($Path) } else { '' }
+  if (-not $text) { Write-Utf8 -Path $Path -Content $block | Out-Null; return }
+  if ($text.Contains($start) -and $text.Contains($end)) {
+    $pattern = "(?s)" + [regex]::Escape($start) + ".*?" + [regex]::Escape($end)
+    $new = [regex]::Replace($text, $pattern, { param($m) $block }, 1)
+  } else { $new = $text.TrimEnd() + "`r`n`r`n" + $block }
+  Write-Utf8 -Path $Path -Content $new | Out-Null
+}
+function Ensure-RouteDir { [CmdletBinding()] param([string]$Path) Ensure-Dir -Path $Path }
+function Add-Or-UpdateJson {
+  [CmdletBinding()] param([string]$Path, [Parameter(Mandatory)]$Object)
+  $json = $Object | ConvertTo-Json -Depth 50
+  Write-IfChanged -Path $Path -Content ($json -replace "`r?`n","`r`n") | Out-Null
+}
+function Run-Tool {
+  [CmdletBinding()] param([string]$File, [string]$Args)
+  $psi = New-Object System.Diagnostics.ProcessStartInfo
+  $psi.FileName = $File; $psi.Arguments = $Args
+  $psi.RedirectStandardOutput = $true; $psi.RedirectStandardError = $true
+  $psi.UseShellExecute = $false
+  $p = [System.Diagnostics.Process]::Start($psi)
+  $out = $p.StandardOutput.ReadToEnd(); $err = $p.StandardError.ReadToEnd(); $p.WaitForExit()
+  return @{ Code=$p.ExitCode; Out=$out; Err=$err }
+}
+function New-GitBranch {
+  [CmdletBinding()] param([string]$Name)
+  try { git rev-parse --is-inside-work-tree *> $null } catch { return }
+  if (git show-ref --verify --quiet "refs/heads/$Name") { git switch "$Name" *> $null } else { git switch -c "$Name" *> $null }
+}
+function Safe-Commit {
+  [CmdletBinding()] param([string]$Message)
+  $status = git status --porcelain
+  if ([string]::IsNullOrWhiteSpace($status)) { return }
+  git add -A; git commit -m $Message *> $null
+}
+function Backup-File {
+  [CmdletBinding()] param([string]$Path)
+  if (-not (Test-Path -LiteralPath $Path)) { return $null }
+  $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+  $bak = "$Path.$stamp.bak"
+  Copy-Item -LiteralPath $Path -Destination $bak -Force
+  return $bak
+}
+function Assert-Exists { [CmdletBinding()] param([string]$Path) if (-not (Test-Path -LiteralPath $Path)) { throw "Missing: $Path" } }
+function Assert-Text {
+  [CmdletBinding()] param([string]$Path, [string]$Pattern)
+  Assert-Exists -Path $Path
+  $t = Get-Content -LiteralPath $Path -Raw
+  if (-not ($t -match $Pattern)) { throw "Pattern not found in ${Path}: ${Pattern}" }
+}
+function Touch-IfMissing { [CmdletBinding()] param([string]$Path) if (-not (Test-Path -LiteralPath $Path)) { "" | Set-Content -LiteralPath $Path -Encoding utf8 } }
+function Test-Tool { [CmdletBinding()] param([string]$Name) try { Get-Command $Name -ErrorAction Stop | Out-Null; return $true } catch { return $false } }
+function Replace-Or-Insert {
+  [CmdletBinding()] param([string]$Path, [string]$AnchorRegex, [string]$NewLine)
+  $text = if (Test-Path -LiteralPath $Path) { Get-Content -LiteralPath $Path -Raw } else { "" }
+  if ($text -match $AnchorRegex) {
+    $new = [regex]::Replace($text, $AnchorRegex, { param($m) $NewLine })
+  } else { $new = ($text.TrimEnd() + "`r`n" + $NewLine) }
+  Write-Utf8 -Path $Path -Content $new | Out-Null
+}
+function Ensure-ImportOnce {
+  [CmdletBinding()] param([string]$Path, [string]$ImportLine)
+  Replace-Or-Insert -Path $Path -AnchorRegex ([regex]::Escape($ImportLine)) -NewLine $ImportLine
+}
+function Ensure-PackageJsonScripts {
+  [CmdletBinding()] param([string]$Path, [hashtable]$Scripts)
+  $json = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
+  foreach ($k in $Scripts.Keys) { $json.scripts.$k = $Scripts[$k] }
+  $json | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $Path -Encoding utf8
+}
+function With-Backup {
+  [CmdletBinding()] param([string]$Path, [ScriptBlock]$Action)
+  $bak = Backup-File -Path $Path
+  & $Action
+  return $bak
+}
+function Assert-Route { [CmdletBinding()] param([string]$Dir) Ensure-Dir -Path $Dir }
+
+Export-ModuleMember -Function @(
+  'Ensure-Dir','Write-Utf8','Write-IfChanged','Replace-Block','Ensure-RouteDir',
+  'Add-Or-UpdateJson','Run-Tool','New-GitBranch','Safe-Commit','Backup-File',
+  'Assert-Exists','Assert-Text','Touch-IfMissing','Test-Tool','Replace-Or-Insert',
+  'Ensure-ImportOnce','Ensure-PackageJsonScripts','With-Backup','Assert-Route'
+)

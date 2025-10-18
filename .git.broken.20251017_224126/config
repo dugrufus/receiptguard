@@ -1,0 +1,20 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+	autocrlf = input
+[user]
+	email = you@example.com
+	name = ReceiptGuard
+[remote "origin"]
+	url = https://github.com/dugrufus/receiptguard.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "feat/req-06-settings"]
+	remote = origin
+	merge = refs/heads/feat/req-06-settings
+[branch "feat/req-07-batch"]
+	remote = origin
+	merge = refs/heads/feat/req-07-batch

@@ -1,0 +1,15 @@
+# Node / Next
+node_modules/
+.next/
+out/
+dist/
+.cache/
+*.log
+.env
+.env.*
+.DS_Storebackup/*.bak
+
+backup/*.bak
+
+backup/
+

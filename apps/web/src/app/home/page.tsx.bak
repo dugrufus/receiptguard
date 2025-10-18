@@ -1,0 +1,40 @@
+import Card from "../../components/rg/Card";
+import BottomNav from "../../components/rg/BottomNav";
+import EmptyState from "../../components/rg/EmptyState";
+import { t } from "../../rg/i18n/t";
+
+export default function Page() {
+  return (
+    <main className="pb-20 p-4 space-y-6">
+      {/* [RG:BLOCK HOME.PRICE_DROPS START] */}
+      <section aria-labelledby="price-drops">
+        <h2 id="price-drops" className="sr-only">{t("home.sections.priceDrops")}</h2>
+        <EmptyState titleKey="home.empty.connect" actionLabelKey="home.actions.connectEmail" />
+      </section>
+      {/* [RG:BLOCK HOME.PRICE_DROPS END] */}
+
+      {/* [RG:BLOCK HOME.RETURN_WINDOWS START] */}
+      <section aria-labelledby="return-windows">
+        <h2 id="return-windows" className="sr-only">{t("home.sections.returnWindows")}</h2>
+        <Card><div className="text-sm opacity-70">{t("home.sections.returnWindows")}</div></Card>
+      </section>
+      {/* [RG:BLOCK HOME.RETURN_WINDOWS END] */}
+
+      {/* [RG:BLOCK HOME.TRACKING START] */}
+      <section aria-labelledby="tracking">
+        <h2 id="tracking" className="sr-only">{t("home.sections.tracking")}</h2>
+        <Card><div className="text-sm opacity-70">{t("home.sections.tracking")}</div></Card>
+      </section>
+      {/* [RG:BLOCK HOME.TRACKING END] */}
+
+      {/* [RG:BLOCK HOME.PURCHASES START] */}
+      <section aria-labelledby="purchases">
+        <h2 id="purchases" className="sr-only">{t("home.sections.purchases")}</h2>
+        <Card><div className="text-sm opacity-70">{t("home.sections.purchases")}</div></Card>
+      </section>
+      {/* [RG:BLOCK HOME.PURCHASES END] */}
+
+      <BottomNav />
+    </main>
+  );
+}

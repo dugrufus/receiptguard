@@ -1,0 +1,97 @@
+{
+  "claim": {
+    "title": "Price Drop Claim",
+    "steps": {
+      "items": "Items",
+      "amount": "Amount",
+      "draft": "Draft",
+      "send": "Send"
+    },
+    "items": {
+      "checkItem": "Select item"
+    },
+    "amount": {
+      "percentLabel": "Percent difference",
+      "percentHelp": "Enter 1–100",
+      "invalidPercent": "Percent must be between 1 and 100."
+    },
+    "draft": {
+      "tabEmail": "Email",
+      "tabPdf": "PDF",
+      "templateConcise": "Concise",
+      "templateDetailed": "Detailed",
+      "conciseIntro": "Requesting a price adjustment of",
+      "conciseOutro": "based on your policy.",
+      "detailedIntro": "I am requesting a price adjustment in the amount of",
+      "detailedPolicy": "This request reflects the difference between the price paid and the current price, within the allowed window."
+    },
+    "send": {
+      "to": "Send to"
+    },
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "send": "Send",
+      "undo": "Undo",
+      "queue": "Queued — Undo (10s)"
+    },
+    "summary": {
+      "estimated": "Estimated credit",
+      "policyCapNote": "Policy cap applied",
+      "items": "Items selected"
+    },
+    "links": {
+      "backHome": "Back to Home"
+    }
+  },
+  "history": {
+    "title": "History",
+    "tabs": {
+      "savings": "Savings",
+      "refunds": "Refunds"
+    },
+    "empty": {
+      "noHistory": "No savings or refunds yet."
+    }
+  },
+  "ring": {
+    "daysLeftShort": "{days}d"
+  },
+  "home": {
+    "title": "Home",
+    "sections": {
+      "priceDrops": "Price drops",
+      "returnWindows": "Return windows",
+      "tracking": "Tracking",
+      "purchases": "Purchases"
+    },
+    "empty": {
+      "connect": "Connect email to start detecting price drops."
+    },
+    "actions": {
+      "connectEmail": "Connect email"
+    }
+  },
+  "stepper": {
+    "announce": "Step {cur} of {total}"
+  },
+  "nav": {
+    "home": "Home",
+    "history": "History",
+    "settings": "Settings"
+  },
+  "empty": {
+    "action": "Get started"
+  },
+  "settings": {
+    "title": "Settings",
+    "sections": {
+      "scope": "Scope",
+      "notifications": "Notifications",
+      "household": "Household"
+    },
+    "empty": {
+      "comingSoon": "Coming soon"
+    }
+  }
+}

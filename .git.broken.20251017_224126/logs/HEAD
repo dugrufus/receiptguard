@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 3dde372693dd06ce4a4f6231584930fab2243e97 ReceiptGuard <you@example.com> 1760763607 -0700	commit (initial): feat(settings): Autocatch scope, notifications, household (REQUEST 06)
+3dde372693dd06ce4a4f6231584930fab2243e97 3dde372693dd06ce4a4f6231584930fab2243e97 ReceiptGuard <you@example.com> 1760764168 -0700	checkout: moving from feat/req-06-settings to feat/req-06-settings
+3dde372693dd06ce4a4f6231584930fab2243e97 3dde372693dd06ce4a4f6231584930fab2243e97 ReceiptGuard <you@example.com> 1760764425 -0700	checkout: moving from feat/req-06-settings to feat/req-06-settings
+3dde372693dd06ce4a4f6231584930fab2243e97 3dde372693dd06ce4a4f6231584930fab2243e97 ReceiptGuard <you@example.com> 1760765462 -0700	checkout: moving from feat/req-06-settings to feat/req-07-batch
+3dde372693dd06ce4a4f6231584930fab2243e97 e55fa259be55b7a446b55b6280052aab6db305f8 ReceiptGuard <you@example.com> 1760765462 -0700	commit: feat(batch): Request 07 — Batch Review page, markers, copy, registry
+e55fa259be55b7a446b55b6280052aab6db305f8 e55fa259be55b7a446b55b6280052aab6db305f8 ReceiptGuard <you@example.com> 1760765481 -0700	branch: Reset to HEAD
+e55fa259be55b7a446b55b6280052aab6db305f8 e55fa259be55b7a446b55b6280052aab6db305f8 ReceiptGuard <you@example.com> 1760765481 -0700	checkout: moving from feat/req-07-batch to feat/req-07-batch

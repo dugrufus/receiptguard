@@ -1,0 +1,8 @@
+{
+  "amountCents": 500,
+  "purchaseId": "pur_1111",
+  "details": {
+    "notes": "Shipment missed promised date."
+  },
+  "type": "late_delivery"
+}

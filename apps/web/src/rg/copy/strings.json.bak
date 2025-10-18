@@ -1,0 +1,40 @@
+{
+  "home": {
+    "title": "Your dashboard",
+    "sections": {
+      "tracking": {
+        "title": "Tracking"
+      },
+      "priceDrops": {
+        "title": "Price drops"
+      },
+      "purchases": {
+        "title": "Purchases"
+      },
+      "returns": {
+        "title": "Returns"
+      }
+    }
+  },
+  "activity": {
+    "title": "All updates"
+  },
+  "settings": {
+    "title": "Settings",
+    "privacy": {
+      "banner": "We scan only receipts & confirmations."
+    }
+  },
+  "claim": {
+    "title": "Price-drop claim"
+  },
+  "returns": {
+    "title": "Returns"
+  },
+  "messages": {
+    "title": "Messages"
+  },
+  "bestPrice": {
+    "title": "Best price"
+  }
+}
