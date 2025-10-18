@@ -1,0 +1,36 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { t } from "../../rg/i18n/t";
+
+export default function BottomNav() {
+  const pathname = usePathname();
+  const items = [
+    { href: "/home", key: "nav.home" },
+    { href: "/history", key: "nav.history" },
+    { href: "/settings", key: "nav.settings" }
+  ];
+
+  // [RG:BLOCK UI.BOTTOM_NAV JSX START]
+  return (
+    <nav className="fixed bottom-0 inset-x-0 border-t bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+      <ul className="grid grid-cols-3">
+        {items.map((it) => {
+          const isActive = pathname?.startsWith(it.href);
+          return (
+            <li key={it.href}>
+              <Link
+                href={it.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`block text-center py-3 text-sm ${isActive ? "font-semibold" : "opacity-80"}`}
+              >
+                {t(it.key)}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+  // [RG:BLOCK UI.BOTTOM_NAV JSX END]
+}

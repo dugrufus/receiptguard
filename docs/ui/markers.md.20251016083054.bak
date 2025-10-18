@@ -1,0 +1,77 @@
+# Marker Registry
+
+| Namespace.Name            | Owning File                                   | Request # | Purpose                                  |
+|--------------------------|-----------------------------------------------|-----------|------------------------------------------|
+| DOCS.BLUEPRINT           | docs/ui/blueprint.md                          | 1         | Product blueprint & IA                   |
+| DOCS.BEST_PRICE_SPEC     | docs/ui/features/best-price.md                | 1         | Best-Price aggregator spec               |
+| DOCS.MESSAGE_HUB_SPEC    | docs/ui/features/message-hub.md               | 1         | Message Hub spec                         |
+| DOCS.ACCEPTANCE_MATRIX   | docs/ui/acceptance/acceptance-matrix.md       | 1         | Master acceptance checklist              |
+
+// [RG:BLOCK REGISTRY.REQ-02 START]
+// [RG:BLOCK REGISTRY.REQ-02 START]
+- components\rg\BottomNav.tsx: UI.BOTTOM_NAV JSX
+- components\rg\Card.tsx: UI.CARD JSX
+- components\rg\CollapsibleSection.tsx: UI.COLLAPSIBLE JSX
+- components\rg\Stepper.tsx: UI.STEPPER JSX
+- components\rg\ProgressRing.tsx: UI.RING SVG
+- components\rg\ToastHost.tsx: UI.TOAST JSX
+- components\rg\EmptyState.tsx: UI.EMPTY JSX
+- apps\web\src\app\home\page.tsx: HOME.PRICE_DROPS
+- apps\web\src\app\home\page.tsx: HOME.RETURN_WINDOWS
+- apps\web\src\app\home\page.tsx: HOME.TRACKING
+- apps\web\src\app\home\page.tsx: HOME.PURCHASES
+- apps\web\src\app\history\page.tsx: HIST.SAVINGS
+- apps\web\src\app\history\page.tsx: HIST.REFUNDS
+- apps\web\src\app\settings\page.tsx: SET.SCOPE
+- apps\web\src\app\settings\page.tsx: SET.NOTIFS
+- apps\web\src\app\settings\page.tsx: SET.HOUSEHOLD
+// [RG:BLOCK REGISTRY.REQ-02 END]
+// [RG:BLOCK REGISTRY.REQ-02 END]
+
+
+// [RG:BLOCK REGISTRY.REQ-02 START]
+// [RG:BLOCK REGISTRY.REQ-02 START]
+- components\rg\BottomNav.tsx: UI.BOTTOM_NAV JSX
+- components\rg\Card.tsx: UI.CARD JSX
+- components\rg\CollapsibleSection.tsx: UI.COLLAPSIBLE JSX
+- components\rg\Stepper.tsx: UI.STEPPER JSX
+- components\rg\ProgressRing.tsx: UI.RING SVG
+- components\rg\ToastHost.tsx: UI.TOAST JSX
+- components\rg\EmptyState.tsx: UI.EMPTY JSX
+- apps\web\src\app\home\page.tsx: HOME.PRICE_DROPS
+- apps\web\src\app\home\page.tsx: HOME.RETURN_WINDOWS
+- apps\web\src\app\home\page.tsx: HOME.TRACKING
+- apps\web\src\app\home\page.tsx: HOME.PURCHASES
+- apps\web\src\app\history\page.tsx: HIST.SAVINGS
+- apps\web\src\app\history\page.tsx: HIST.REFUNDS
+- apps\web\src\app\settings\page.tsx: SET.SCOPE
+- apps\web\src\app\settings\page.tsx: SET.NOTIFS
+- apps\web\src\app\settings\page.tsx: SET.HOUSEHOLD
+// [RG:BLOCK REGISTRY.REQ-02 END]
+// [RG:BLOCK REGISTRY.REQ-02 END]
+
+
+// [RG:BLOCK REGISTRY.REQ-02 START]
+// [RG:BLOCK REGISTRY.REQ-02 START]
+- components\rg\BottomNav.tsx: UI.BOTTOM_NAV JSX
+- components\rg\Card.tsx: UI.CARD JSX
+- components\rg\CollapsibleSection.tsx: UI.COLLAPSIBLE JSX
+- components\rg\Stepper.tsx: UI.STEPPER JSX
+- components\rg\ProgressRing.tsx: UI.RING SVG
+- components\rg\ToastHost.tsx: UI.TOAST JSX
+- components\rg\EmptyState.tsx: UI.EMPTY JSX
+- apps\web\src\app\home\page.tsx: HOME.PRICE_DROPS
+- apps\web\src\app\home\page.tsx: HOME.RETURN_WINDOWS
+- apps\web\src\app\home\page.tsx: HOME.TRACKING
+- apps\web\src\app\home\page.tsx: HOME.PURCHASES
+- apps\web\src\app\history\page.tsx: HIST.SAVINGS
+- apps\web\src\app\history\page.tsx: HIST.REFUNDS
+- apps\web\src\app\settings\page.tsx: SET.SCOPE
+- apps\web\src\app\settings\page.tsx: SET.NOTIFS
+- apps\web\src\app\settings\page.tsx: SET.HOUSEHOLD
+// [RG:BLOCK REGISTRY.REQ-02 END]
+// [RG:BLOCK REGISTRY.REQ-02 END]
+// [RG:BLOCK CLAIM.ITEMS JSX START] ... END
+// [RG:BLOCK CLAIM.AMOUNT JSX START] ... END
+// [RG:BLOCK CLAIM.DRAFT JSX START] ... END
+// [RG:BLOCK CLAIM.SEND JSX START] ... END

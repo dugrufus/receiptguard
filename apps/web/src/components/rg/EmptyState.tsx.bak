@@ -1,0 +1,25 @@
+"use client";
+import { t } from "../../rg/i18n/t";
+
+type Props = {
+  titleKey: string;
+  actionLabelKey: string;
+  onAction?: () => void;
+};
+
+export default function EmptyState({ titleKey, actionLabelKey, onAction }: Props) {
+  // [RG:BLOCK UI.EMPTY JSX START]
+  return (
+    <div className="rounded-2xl border bg-white p-6 text-center">
+      <div className="mb-3 text-base">{t(titleKey)}</div>
+      <button
+        type="button"
+        className="inline-flex items-center justify-center rounded-xl border px-4 py-2 text-sm hover:bg-gray-50"
+        onClick={onAction}
+      >
+        {t(actionLabelKey)}
+      </button>
+    </div>
+  );
+  // [RG:BLOCK UI.EMPTY JSX END]
+}

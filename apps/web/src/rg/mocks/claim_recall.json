@@ -1,0 +1,8 @@
+{
+  "amountCents": 0,
+  "purchaseId": "pur_1111",
+  "details": {
+    "notes": "Manufacturer recall."
+  },
+  "type": "recall"
+}

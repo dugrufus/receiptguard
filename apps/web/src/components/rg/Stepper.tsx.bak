@@ -1,0 +1,15 @@
+import { t } from "../../rg/i18n/t";
+
+type Props = { current: number; total: number };
+
+export default function Stepper({ current, total }: Props) {
+  const announce = t("stepper.announce", { cur: current, total });
+  // [RG:BLOCK UI.STEPPER JSX START]
+  return (
+    <div className="flex items-center gap-2" role="group" aria-label={announce}>
+      <span className="sr-only" aria-live="polite">{announce}</span>
+      <div className="text-sm">{announce}</div>
+    </div>
+  );
+  // [RG:BLOCK UI.STEPPER JSX END]
+}

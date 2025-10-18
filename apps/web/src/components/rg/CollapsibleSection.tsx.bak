@@ -1,0 +1,26 @@
+"use client";
+import * as React from "react";
+
+type Props = { title: string; children: React.ReactNode; defaultOpen?: boolean };
+
+export default function CollapsibleSection({ title, children, defaultOpen = true }: Props) {
+  const [open, setOpen] = React.useState<boolean>(defaultOpen);
+  // [RG:BLOCK UI.COLLAPSIBLE JSX START]
+  return (
+    <section>
+      <button
+        type="button"
+        className="w-full flex items-center justify-between py-2"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className="text-base font-medium">{title}</span>
+        <span className={`transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true">▾</span>
+      </button>
+      <div hidden={!open} className="mt-2 space-y-2">
+        {children}
+      </div>
+    </section>
+  );
+  // [RG:BLOCK UI.COLLAPSIBLE JSX END]
+}

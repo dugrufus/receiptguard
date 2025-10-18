@@ -1,0 +1,77 @@
+import React from "react";
+import Link from "next/link";
+import { daysUntilReturnBy, urgencyColor, formatAbsolute } from "@/rg/utils/deadline";
+import { Card } from "@/components/rg/Card";
+import { t } from "@/rg/i18n";
+
+export default function ReturnPage({ params }: { params: { id: string } }) {
+  // TODO: replace with real purchase fetch by `params.id`
+  const purchase = { id: params.id, title: "Sample Purchase", returnBy: new Date(Date.now() + 3 * 86_400_000) };
+  const days = daysUntilReturnBy(purchase);
+  const urgency = urgencyColor(days);
+  const deadlineStr = formatAbsolute(new Date(purchase.returnBy as Date));
+
+  return (
+    <main className="p-4 pb-24 space-y-4">
+      {days <= 5 && (
+        <div
+          role="status"
+          className={`sticky top-0 z-10 p-3 rounded-b-2xl shadow ${urgency === "danger" ? "bg-red-100" : "bg-yellow-100"}`}
+        >
+          {urgency === "danger"
+            ? t("returns.urgency.verySoon").replace("{date}", deadlineStr)
+            : t("returns.urgency.soon").replace("{date}", deadlineStr)}
+        </div>
+      )}
+
+      <h1 className="text-xl font-semibold">{t("returns.title")}</h1>
+
+      <Card>
+        {/* [RG:BLOCK RET.SELECT JSX START] */}
+        <section className="space-y-2" aria-labelledby="ret-select">
+          <h2 id="ret-select" className="text-lg font-medium">{t("returns.select.title")}</h2>
+          <div className="text-sm opacity-80">{purchase.title}</div>
+          <div className="text-sm">{"Return by "}{deadlineStr}</div>
+        </section>
+        {/* [RG:BLOCK RET.SELECT JSX END] */}
+      </Card>
+
+      <Card>
+        {/* [RG:BLOCK RET.REASON JSX START] */}
+        <fieldset className="space-y-2" aria-labelledby="ret-reason">
+          <legend id="ret-reason" className="text-lg font-medium">{t("returns.reason.title")}</legend>
+          <label className="flex items-center gap-2"><input type="radio" name="reason" value="wrong" />{t("returns.reason.wrong")}</label>
+          <label className="flex items-center gap-2"><input type="radio" name="reason" value="damaged" />{t("returns.reason.damaged")}</label>
+          <label className="flex items-center gap-2"><input type="radio" name="reason" value="better" />{t("returns.reason.better")}</label>
+          <label className="flex items-center gap-2"><input type="radio" name="reason" value="other" />{t("returns.reason.other")}</label>
+        </fieldset>
+        {/* [RG:BLOCK RET.REASON JSX END] */}
+      </Card>
+
+      <Card>
+        {/* [RG:BLOCK RET.LABEL JSX START] */}
+        <fieldset className="space-y-2" aria-labelledby="ret-label">
+          <legend id="ret-label" className="text-lg font-medium">{t("returns.label.title")}</legend>
+          <label className="flex items-center gap-2"><input type="radio" name="label" value="store" />{t("returns.label.store")} <span className="text-xs opacity-70">(ETA 3–5 days)</span></label>
+          <label className="flex items-center gap-2"><input type="radio" name="label" value="buy" />{t("returns.label.buy")} <span className="text-xs opacity-70">($7.50)</span></label>
+          <label className="flex items-center gap-2"><input type="radio" name="label" value="pickup" />{t("returns.label.pickup")}</label>
+        </fieldset>
+        {/* [RG:BLOCK RET.LABEL JSX END] */}
+      </Card>
+
+      <Card>
+        {/* [RG:BLOCK RET.CONFIRM JSX START] */}
+        <section className="space-y-3" aria-labelledby="ret-confirm">
+          <h2 id="ret-confirm" className="text-lg font-medium">{t("returns.confirm.title")}</h2>
+          <div className="text-sm">RMA • QR • Summary</div>
+          <button className="w-full h-11 rounded-2xl shadow font-medium">{t("returns.confirm.cta")}</button>
+          <div className="text-sm">
+            <Link href="/activity" className="underline">All updates</Link>
+          </div>
+          <div className="text-xs opacity-70">{deadlineStr}</div>
+        </section>
+        {/* [RG:BLOCK RET.CONFIRM JSX END] */}
+      </Card>
+    </main>
+  );
+}

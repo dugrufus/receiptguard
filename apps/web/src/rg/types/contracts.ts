@@ -1,0 +1,5 @@
+export type Purchase = { id: string; merchant: string; title: string; skuOrModel: string; priceCents: number; purchaseDateISO: string; returnByISO: string; status: "OWNED" | "RETURNED"; thumbUrl?: string; };
+export type Offer = { id: string; merchant: string; title: string; itemPriceCents: number; shippingCents: number; estimatedTaxCents: number; totalCents: number; deliveryDays: number; condition: "NEW" | "USED" | "REFURB"; pickupAvailable: boolean; };
+export type Event = { id: string; kind: "CLAIM_SENT" | "LABEL_CREATED" | "DELIVERED" | "REFUND_ISSUED" | "MESSAGE"; atISO: string; summary: string; relatedId?: string; };
+export type RecallNotice = { id: string; product: string; issuedAtISO: string; summary: string; };
+export type Message = { id: string; threadId?: string; atISO: string; from: string; to: string[]; text: string; direction: "IN" | "OUT"; };

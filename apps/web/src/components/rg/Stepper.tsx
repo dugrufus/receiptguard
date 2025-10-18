@@ -1,0 +1,11 @@
+'use client';
+type Props = { step: number; total: number };
+export default function Stepper({ step, total }: Props) {
+  return (
+    // [RG:BLOCK UI.STEPPER JSX START]
+    <div aria-live=""polite"" className=""text-sm opacity-80"">
+      <span aria-label={step  of }>{step} / {total}</span>
+    </div>
+    // [RG:BLOCK UI.STEPPER JSX END]
+  );
+}
