@@ -1,59 +1,42 @@
-"use client";
 import React from "react";
-import { t } from "@/rg/i18n";
-// [RG:BLOCK SCORE.WHY]
+
+/* [RG:BLOCK SCORE.WHY] */
+
+export interface WhyFactor { label: string; value?: string | number; hint?: string; }
+export interface ScoreWhyDrawerProps {
+  title?: string;
+  factors: WhyFactor[];
+  open?: boolean;
+  onClose?: () => void;
+}
 
 export default function ScoreWhyDrawer({
-  factors = [],
-  triggerLabel = "Why?",
-}: {
-  factors?: Array<{ id: string; label: string; value?: string | number | boolean }>;
-  triggerLabel?: string;
-}) {
-  const [open, setOpen] = React.useState(false);
-  React.useEffect(() => {
-    function onKey(e: KeyboardEvent) { if (e.key === "Escape") setOpen(false); }
-    if (open) { window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }
-  }, [open]);
-
+  title = "Why this score?",
+  factors,
+  open = false,
+  onClose,
+}: ScoreWhyDrawerProps) {
+  if (!open) return null;
   return (
-    <>
-      {/* [RG:BLOCK SCORE.WHY START] */}
-      <button
-        type="button"
-        className="underline text-sm"
-        onClick={() => setOpen(true)}
-        aria-haspopup="dialog"
-        aria-expanded={open ? "true" : "false"}
-      >
-        {t("score.why.title") || triggerLabel}
-      </button>
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-        >
-          <div className="absolute inset-0 bg-black/30" onClick={() => setOpen(false)} aria-hidden="true" />
-          <div className="relative w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl p-4 max-h-[80vh] overflow-y-auto" role="document" aria-label={t("score.why.title")}>
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="text-base font-semibold">{t("score.why.title")}</h2>
-              <button onClick={() => setOpen(false)} aria-label="Close">✕</button>
-            </div>
-            <ul className="space-y-2">
-              {factors.map((f) => (
-                <li key={f.id} className="flex items-start gap-2">
-                  <span className="mt-1">•</span>
-                  <span className="text-sm">
-                    {String(f.label)}{typeof f.value !== "undefined" ? ` — ${String(f.value)}` : ""}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <div role="dialog" aria-modal className="fixed inset-0 z-50 flex items-end md:items-center justify-center">
+      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="relative w-full md:w-[520px] max-h-[85vh] overflow-auto rounded-t-2xl md:rounded-2xl bg-white p-6 shadow-xl">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold">{title}</h3>
+          <button onClick={onClose} aria-label="Close" className="p-2 rounded">✕</button>
         </div>
-      )}
-      {/* [RG:BLOCK SCORE.WHY END] */}
-    </>
+        <ul className="space-y-3">
+          {factors.map((f, i) => (
+            <li key={i} className="flex items-start justify-between gap-4">
+              <div>
+                <div className="font-medium">{f.label}</div>
+                {f.hint && <div className="text-sm opacity-70">{f.hint}</div>}
+              </div>
+              {f.value !== undefined && <div className="text-sm font-mono">{f.value}</div>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }

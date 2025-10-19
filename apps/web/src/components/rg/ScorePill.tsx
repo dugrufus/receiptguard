@@ -1,38 +1,38 @@
-"use client";
 import React from "react";
-import { t } from "@/rg/i18n";
-// [RG:BLOCK SCORE.PILL]
 
-type ScoreLevel = "high" | "medium" | "low";
+/* [RG:BLOCK SCORE.PILL] */
 
-export function levelToLabel(level: ScoreLevel) {
-  switch (level) {
-    case "high":   return t("score.pill.high");
-    case "medium": return t("score.pill.medium");
-    default:       return t("score.pill.low");
-  }
+export type ScoreBand = "High" | "Medium" | "Low";
+
+export interface ScorePillProps {
+  band: ScoreBand;
+  minutesApprox?: number;
+  onWhy?: () => void;
+  className?: string;
 }
 
-export default function ScorePill({ level, minutes }: { level: ScoreLevel; minutes?: number }) {
-  const label = levelToLabel(level);
-  const minutesText = typeof minutes === "number"
-    ? (t("score.pill.minutesApprox") || "≈ {minutes} min").replace("{minutes}", String(minutes))
-    : null;
+const COLORS: Record<ScoreBand, string> = {
+  High: "bg-emerald-100 text-emerald-800 border-emerald-300",
+  Medium: "bg-amber-100 text-amber-800 border-amber-300",
+  Low: "bg-rose-100 text-rose-800 border-rose-300",
+};
 
+export default function ScorePill({ band, minutesApprox, onWhy, className = "" }: ScorePillProps) {
+  const color = COLORS[band] ?? "bg-gray-100 text-gray-800 border-gray-300";
   return (
-    <span
-      aria-label={`${label}${minutesText ? " • " + minutesText : ""}`}
-      className={[
-        "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium",
-        level === "high" ? "bg-green-100 text-green-800" :
-        level === "medium" ? "bg-yellow-100 text-yellow-800" :
-        "bg-gray-100 text-gray-800"
-      ].join(" ")}
+    <button
+      type="button"
+      onClick={onWhy}
+      className={
+        "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium " +
+        color + " " + className
+      }
+      aria-label="Refund score"
     >
-      {/* [RG:BLOCK SCORE.PILL START] */}
-      <span>{label}</span>
-      {minutesText ? <span aria-hidden="true">• {minutesText}</span> : null}
-      {/* [RG:BLOCK SCORE.PILL END] */}
-    </span>
+      <span>{band}</span>
+      {typeof minutesApprox === "number" && (
+        <span className="opacity-80">~{Math.round(minutesApprox)} min</span>
+      )}
+    </button>
   );
 }
