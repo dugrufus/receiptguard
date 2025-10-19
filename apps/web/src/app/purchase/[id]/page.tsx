@@ -26,3 +26,5 @@ export default function PurchaseDetailsPage() {
     </main>
   );
 }
+// [RG:BLOCK PD.SCORE]
+

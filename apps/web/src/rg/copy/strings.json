@@ -212,5 +212,10 @@
     "why": {
       "title": "Why this score?"
     }
-  }
+  },
+  "score.pill.high": "High",
+  "score.pill.medium": "Medium",
+  "score.pill.low": "Low",
+  "score.pill.minutesApprox": "≈{min} min",
+  "score.why.title": "Why this score?"
 }

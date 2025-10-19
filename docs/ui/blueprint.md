@@ -68,3 +68,36 @@ See acceptance-matrix.md for sectioned checklists.
 Define factor weights for refund likelihood and effort (e.g., policy match, time remaining, receipt quality, item category).
 Capture heuristic in mocks and keep this section as the living spec.
 [RG:BLOCK DOCS.BLUEPRINT.SCORING END]
+## Refund Likelihood & Effort Score - Heuristic
+
+Factors:
+- Policy match
+- Receipt quality
+- Time remaining
+
+Score bands:
+- High: Most factors align strongly
+- Medium: Mixed indicators
+- Low: Most indicators weak or missing
+
+Approximate minutes are displayed on the pill.
+## Refund Likelihood & Effort Score — Heuristic
+
+**Weights**
+- Time remaining in policy window: **0.45**
+- Receipt quality (0..1): **0.35**
+- Merchant policy (lenient > standard > strict): **0.20**
+
+**Thresholds**
+- **High**: score ≥ 0.66
+- **Medium**: 0.40 ≤ score < 0.66
+- **Low**: score < 0.40
+
+**Effort minutes**
+- `minutes ≈ clamp(round(base * (1.75 - score)), 2, 25)` with `base=10` unless task overrides.
+
+**Displayed Factors (Why?)**
+- Policy match / time remaining
+- Receipt quality
+- Merchant policy
+- Eligibility (price-drop/return) — informational

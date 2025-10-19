@@ -10,4 +10,82 @@
 export default function CombineReturnPage() {
   // TODO: Wire real data & i18n t() helper. Scaffold only.
   return null;
+}// [RG:BLOCK PD.SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/return/combine/[merchant]/page.tsx; Added=True; Reason='appended' }
 }
+
+function Ensure-StringsKeys {
+  param([Parameter(Mandatory)] [string] apps/web/src/app/return/combine/[merchant]/page.tsx)
+  C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx = Join-Path C:\Projects\receiptguard apps/web/src/app/return/combine/[merchant]/page.tsx
+  if (-not (Test-Path -LiteralPath C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx)) { throw "strings.json not found: apps/web/src/app/return/combine/[merchant]/page.tsx" }
+   = Get-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx -Raw | ConvertFrom-Json
+   = @(
+    'score.pill.high', 'score.pill.medium', 'score.pill.low',
+    'score.pill.minutesApprox', 'score.why.title'
+  )
+   = @()
+  foreach ( in ) {
+    if (-not (.PSObject.Properties.Name -contains )) {
+       | Add-Member -MemberType NoteProperty -Name  -Value (
+        switch () {
+          'score.pill.high'          { 'High' }
+          'score.pill.medium'        { 'Medium' }
+          'score.pill.low'           { 'Low' }
+          'score.pill.minutesApprox' { '≈{min} min' }
+          'score.why.title'          { 'Why this score?' }
+        }
+      ) -Force
+       += 
+    }
+  }
+  if (.Count) {
+     | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx -Encoding utf8
+  }
+  return 
+}
+
+function Ensure-BlueprintHeuristic {
+  C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx = Join-Path C:\Projects\receiptguard 'docs/ui/blueprint.md'
+  if (-not (Test-Path -LiteralPath C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx)) { return False }
+  'use client';
+
+/**
+ * [RG:BLOCK RET.COMBINE START]
+ * Purpose: Selector of items; combined weight/ETA; chosen label/pickup option; near-deadline warnings.
+ * Copy keys: t('combine.title'), t('combine.selectItems'), t('combine.labelOption'), t('combine.pickupOption'), t('combine.warning.deadline')
+ * [RG:BLOCK RET.COMBINE END]
+ */
+
+export default function CombineReturnPage() {
+  // TODO: Wire real data & i18n t() helper. Scaffold only.
+  return null;
+} = Get-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx -Raw
+  if ('use client';
+
+/**
+ * [RG:BLOCK RET.COMBINE START]
+ * Purpose: Selector of items; combined weight/ETA; chosen label/pickup option; near-deadline warnings.
+ * Copy keys: t('combine.title'), t('combine.selectItems'), t('combine.labelOption'), t('combine.pickupOption'), t('combine.warning.deadline')
+ * [RG:BLOCK RET.COMBINE END]
+ */
+
+export default function CombineReturnPage() {
+  // TODO: Wire real data & i18n t() helper. Scaffold only.
+  return null;
+} -match 'Refund Likelihood & Effort Score - Heuristic') { return False }
+   = @"
+## Refund Likelihood & Effort Score - Heuristic
+
+Factors:
+- Policy match
+- Receipt quality
+- Time remaining
+
+Score bands:
+- High: Most factors align strongly
+- Medium: Mixed indicators
+- Low: Most indicators weak or missing
+
+Approximate minutes are displayed on the pill.

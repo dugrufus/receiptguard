@@ -26,4 +26,114 @@ export default function Page() {
       {/* [RG:BLOCK RECALL.DETAIL END] */}
     </main>
   );
+}// [RG:BLOCK PD.SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/recall/[id]/page.tsx; Added=True; Reason='appended' }
 }
+
+function Ensure-StringsKeys {
+  param([Parameter(Mandatory)] [string] apps/web/src/app/recall/[id]/page.tsx)
+  C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx = Join-Path C:\Projects\receiptguard apps/web/src/app/recall/[id]/page.tsx
+  if (-not (Test-Path -LiteralPath C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx)) { throw "strings.json not found: apps/web/src/app/recall/[id]/page.tsx" }
+   = Get-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx -Raw | ConvertFrom-Json
+   = @(
+    'score.pill.high', 'score.pill.medium', 'score.pill.low',
+    'score.pill.minutesApprox', 'score.why.title'
+  )
+   = @()
+  foreach ( in ) {
+    if (-not (.PSObject.Properties.Name -contains )) {
+       | Add-Member -MemberType NoteProperty -Name  -Value (
+        switch () {
+          'score.pill.high'          { 'High' }
+          'score.pill.medium'        { 'Medium' }
+          'score.pill.low'           { 'Low' }
+          'score.pill.minutesApprox' { '≈{min} min' }
+          'score.why.title'          { 'Why this score?' }
+        }
+      ) -Force
+       += 
+    }
+  }
+  if (.Count) {
+     | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx -Encoding utf8
+  }
+  return 
+}
+
+function Ensure-BlueprintHeuristic {
+  C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx = Join-Path C:\Projects\receiptguard 'docs/ui/blueprint.md'
+  if (-not (Test-Path -LiteralPath C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx)) { return False }
+  import React from 'react';
+import { t } from '@/rg/copy';
+
+export default function Page() {
+  return (
+    <main className="p-4 space-y-4">
+      {/* [RG:BLOCK RECALL.DETAIL START] */}
+      <h1 className="text-xl font-semibold">{t('recall.title')}</h1>
+      <section className="space-y-3">
+        <div className="rounded-xl border p-4">
+          <div className="text-sm font-medium mb-1">{t('recall.hazard')}</div>
+          <div className="text-sm opacity-80">—</div>
+        </div>
+        <div className="rounded-xl border p-4">
+          <div className="text-sm font-medium mb-1">{t('recall.remedy')}</div>
+          <div className="text-sm opacity-80">—</div>
+        </div>
+        <div className="rounded-xl border p-4">
+          <div className="text-sm font-medium mb-1">{t('recall.affected')}</div>
+          <div className="text-sm opacity-80">—</div>
+        </div>
+        <button type="button" className="rounded-2xl border px-4 h-10">
+          {t(''recall.cta'')}
+        </button>
+      </section>
+      {/* [RG:BLOCK RECALL.DETAIL END] */}
+    </main>
+  );
+} = Get-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx -Raw
+  if (import React from 'react';
+import { t } from '@/rg/copy';
+
+export default function Page() {
+  return (
+    <main className="p-4 space-y-4">
+      {/* [RG:BLOCK RECALL.DETAIL START] */}
+      <h1 className="text-xl font-semibold">{t('recall.title')}</h1>
+      <section className="space-y-3">
+        <div className="rounded-xl border p-4">
+          <div className="text-sm font-medium mb-1">{t('recall.hazard')}</div>
+          <div className="text-sm opacity-80">—</div>
+        </div>
+        <div className="rounded-xl border p-4">
+          <div className="text-sm font-medium mb-1">{t('recall.remedy')}</div>
+          <div className="text-sm opacity-80">—</div>
+        </div>
+        <div className="rounded-xl border p-4">
+          <div className="text-sm font-medium mb-1">{t('recall.affected')}</div>
+          <div className="text-sm opacity-80">—</div>
+        </div>
+        <button type="button" className="rounded-2xl border px-4 h-10">
+          {t(''recall.cta'')}
+        </button>
+      </section>
+      {/* [RG:BLOCK RECALL.DETAIL END] */}
+    </main>
+  );
+} -match 'Refund Likelihood & Effort Score - Heuristic') { return False }
+   = @"
+## Refund Likelihood & Effort Score - Heuristic
+
+Factors:
+- Policy match
+- Receipt quality
+- Time remaining
+
+Score bands:
+- High: Most factors align strongly
+- Medium: Mixed indicators
+- Low: Most indicators weak or missing
+
+Approximate minutes are displayed on the pill.
