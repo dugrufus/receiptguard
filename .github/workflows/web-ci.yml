@@ -29,5 +29,6 @@ jobs:
 
       - run: pnpm config set store-dir ~/.pnpm-store
       - run: pnpm install --frozen-lockfile
-      - run: pnpm -C apps/web run lint --if-present
+- run: pnpm -C apps/web --if-present run lint
       - run: pnpm -C apps/web run build
+
