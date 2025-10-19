@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { t } from "@/rg/i18n";
+// [RG:BLOCK SCORE.PILL]
 
 type ScoreLevel = "high" | "medium" | "low";
 
