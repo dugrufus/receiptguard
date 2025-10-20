@@ -1,0 +1,109 @@
+import { t } from '@/rg/copy'
+'use client';
+
+import React, { useState } from 'react';
+import { t } from '@/rg/copy/i18n';
+import BottomNav from '@/components/rg/BottomNav';
+import ScopeDrawer from '@/components/rg/settings/ScopeDrawer';
+
+export default function SettingsPage() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [digestEnabled, setDigestEnabled] = useState(true);
+  const [digestTime, setDigestTime] = useState('09:00'); // 24h input value; display shows localized '9:00 AM'
+  const [householdEmail, setHouseholdEmail] = useState('');
+  const [householdRole, setHouseholdRole] = useState<'viewer'|'editor'|'sender'>('viewer');
+  const [members, setMembers] = useState<Array<{email:string, role:'viewer'|'editor'|'sender'}>>([]);
+
+  return (
+    <main className="p-4 pb-24 grid gap-6" aria-label=""Settings"">
+      {/* Privacy banner */}
+      <div role=""status"" className="rounded-xl border p-3 text-sm">
+        {t('settings.privacy.banner')}
+      </div>
+
+      {/* [RG:BLOCK SET.SCOPE START] */}
+      <section aria-labelledby=""scope-title"" className="grid gap-3">
+        <h2 id="scope-title" className="text-lg font-semibold">{t('settings.scope.title')}</h2>
+        <div className="grid gap-2">
+          <button type=""button"" className="border rounded-lg px-3 py-2 w-full text-left" onClick={()=>setDrawerOpen(true)} aria-haspopup=""dialog"">
+            {t('settings.scope.title')} — {t('settings.scope.receipts')}, {t('settings.scope.confirmations')}, {t('settings.scope.shipping')}
+          </button>
+          {drawerOpen && (
+            <div className="fixed inset-0 bg-black/30" role=""presentation"" onClick={()=>setDrawerOpen(false)}>
+              <div className="absolute right-0 top-0 h-full w-[90%] max-w-md bg-white shadow-xl" onClick={e=>e.stopPropagation()}>
+                <div className="flex items-center justify-between p-3 border-b">
+                  <span className="font-medium">{t('settings.scope.title')}</span>
+                  <button aria-label=""Close"" onClick={()=>setDrawerOpen(false)} className="p-2">✕</button>
+                </div>
+                <div className="p-4"><ScopeDrawer /></div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+      {/* [RG:BLOCK SET.SCOPE END] */}
+
+      {/* [RG:BLOCK SET.NOTIFS START] */}
+      <section aria-labelledby=""notifs-title"" className="grid gap-3">
+        <h2 id="notifs-title" className="text-lg font-semibold">{t('settings.notifs.title')}</h2>
+        <label className="flex items-center gap-2">
+          <input type=""checkbox"" checked={digestEnabled} onChange={e=>setDigestEnabled(e.target.checked)} aria-label=""Enable daily digest"" />
+          <span>{t('settings.notifs.dailyDigest')}</span>
+        </label>
+        <div className="grid gap-2 max-w-xs">
+          <label className="text-sm" htmlFor=""digest-time"">{t('settings.notifs.dailyDigest')}</label>
+          <input id="digest-time" type=""time"" className="border rounded p-2" value={digestTime} onChange={e=>setDigestTime(e.target.value)} />
+          <div className="text-xs opacity-80" aria-live=""polite"">{t('settings.notifs.defaultTime')}</div>
+        </div>
+      </section>
+      {/* [RG:BLOCK SET.NOTIFS END] */}
+
+      {/* [RG:BLOCK SET.HOUSEHOLD START] */}
+      <section aria-labelledby=""household-title"" className="grid gap-3">
+        <h2 id="household-title" className="text-lg font-semibold">{t('settings.household.title')}</h2>
+        <div className="grid gap-2 sm:grid-cols-[1fr_auto_auto] sm:items-end">
+          <div className="grid gap-1">
+            <label className="text-sm">{t('settings.household.invite')}</label>
+            <input className="border rounded p-2" type=""email"" value={householdEmail} onChange={e=>setHouseholdEmail(e.target.value)} placeholder=""you@example.com"" />
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm">Role</label>
+            <select className="border rounded p-2" value={householdRole} onChange={e=>setHouseholdRole(e.target.value as any)} aria-label=""Role"">
+              <option value=""viewer"">{t('settings.household.role.viewer')}</option>
+              <option value=""editor"">{t('settings.household.role.editor')}</option>
+              <option value=""sender"">{t('settings.household.role.sender')}</option>
+            </select>
+          </div>
+          <button className="border rounded p-2" onClick={()=>{
+            if (!householdEmail) return;
+            setMembers(prev => prev.find(m=>m.email===householdEmail) ? prev : [...prev, {email:householdEmail, role:householdRole}]);
+            setHouseholdEmail('');
+          }}>Invite</button>
+        </div>
+        <ul className="divide-y rounded border">
+          {members.length === 0 && <li className="p-3 text-sm opacity-70">No members yet</li>}
+          {members.map(m => (
+            <li key={m.email} className="p-3 flex items-center justify-between gap-3">
+              <div className="grid">
+                <span className="font-medium">{m.email}</span>
+                <span className="text-xs opacity-70">{m.role}</span>
+              </div>
+              <button className="border rounded px-2 py-1" onClick={()=>setMembers(prev=>prev.filter(x=>x.email!==m.email))}>Revoke</button>
+            </li>
+          ))}
+        </ul>
+      </section>
+      {/* [RG:BLOCK SET.HOUSEHOLD END] */}
+
+      <BottomNav />
+    </main>
+  );
+}
+
+{/* [RG:BLOCK SET.WARRANTY START] */}
+<section role="region" aria-labelledby="warranty-wallet" className="rounded-2xl border p-4">
+  <h2 id="warranty-wallet" className="text-lg font-semibold">{t('warranty.title')}</h2>
+  <p className="text-sm opacity-80">{t('')}</p>
+</section>
+{/* [RG:BLOCK SET.WARRANTY END] */}
+

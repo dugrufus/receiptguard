@@ -4,7 +4,7 @@ import { daysUntilReturnBy, urgencyColor, formatAbsolute } from "@/rg/utils/dead
 import { Card } from "@/components/rg/Card";
 import { t } from "@/rg/i18n";
 
-export default function ReturnPage({ params }: any) {
+export default function ReturnPage({ params }: { params: { id: string } }) {
   // TODO: replace with real purchase fetch by `params.id`
   const purchase = { id: params.id, title: "Sample Purchase", returnBy: new Date(Date.now() + 3 * 86_400_000) };
   const days = daysUntilReturnBy(purchase);
@@ -75,4 +75,3 @@ export default function ReturnPage({ params }: any) {
     </main>
   );
 }
-

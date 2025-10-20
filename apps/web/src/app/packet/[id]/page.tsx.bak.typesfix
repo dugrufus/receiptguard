@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import { t } from '@/rg/copy';
-export default function PacketPage({ params }: any) {
+type Params = { id: string };
+
+export default function PacketPage({ params }: { params: Params }) {
   const [dataUrl, setDataUrl] = useState<string | null>(null);
   const [files, setFiles] = useState<File[]>([]);
 
@@ -71,5 +73,4 @@ export default function PacketPage({ params }: any) {
     </main>
   );
 }
-
 

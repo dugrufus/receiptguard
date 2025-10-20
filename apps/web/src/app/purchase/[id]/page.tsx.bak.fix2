@@ -18,7 +18,7 @@ export default function PurchaseDetailsPage() {
           <a href="/price-match/123" className="underline">{t("pm.title")}</a>
         </div>
       </div>
-      {/* [RG:BLOCK PD.CHEAPER_BANNER END] */}
+      {/* [RG:BLOCK PD.CHEAPER_BANNER END] */}}
 
       <section className="rounded-2xl border p-4">
         <p>{t('pd.body') ?? 'Details...'}</p>
@@ -27,7 +27,6 @@ export default function PurchaseDetailsPage() {
   );
 }
 // [RG:BLOCK PD.SCORE]
-
 
 
 

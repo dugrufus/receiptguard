@@ -1,5 +1,8 @@
 import { t } from "@/rg/i18n";
-export default function RecallPage({ params }: any) {
+
+type Params = { id: string };
+
+export default function RecallPage({ params }: { params: Params }) {
   return (
     <main className="p-4 space-y-4">
       {/* [RG:BLOCK RECALL.DETAIL START] */}
@@ -14,4 +17,3 @@ export default function RecallPage({ params }: any) {
     </main>
   );
 }
-

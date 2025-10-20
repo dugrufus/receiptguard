@@ -14,7 +14,7 @@ const t = (k: string): string => {
   }
 };
 
-export default function Page({ params }: any): JSX.Element {
+export default function Page({ params }: { params: Promise<{ id: string }> }): JSX.Element {
   const { id } = use(params);
   const [outcome, setOutcome] = useState<"approved" | "denied" | "later" | "">("");
 
@@ -77,4 +77,3 @@ export default function Page({ params }: any): JSX.Element {
     </main>
   );
 }
-
