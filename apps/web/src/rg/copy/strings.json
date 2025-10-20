@@ -28,6 +28,26 @@
       "title": "Purchases"
     }
   },
+  "packet": {
+    "title": "Auto-Docs packet builder",
+    "generated": {
+      "preview": "Preview generated packet"
+    },
+    "steps": {
+      "generate": "Generate",
+      "attach": "Attachments",
+      "confirm": "Confirm facts"
+    }
+  },
+  "ish": {
+    "outcome": {
+      "approved": "Approved",
+      "later": "Try later",
+      "denied": "Denied"
+    },
+    "title": "In-Store Price Adjust",
+    "script": "Hi! I purchased this item recently and found a lower price at a competitor. Could you help with a price adjustment? I have the receipt and the competitor link/QR here. Thank you!"
+  },
   "activity": {
     "title": "Activity",
     "filters": {
@@ -38,6 +58,26 @@
       "returns": "Returns"
     },
     "backToHome": "Back to Home"
+  },
+  "score.pill.low": "Low",
+  "history": {
+    "refunds": {
+      "title": "Refunds"
+    },
+    "savings": {
+      "title": "Savings"
+    }
+  },
+  "score": {
+    "pill": {
+      "low": "Low",
+      "high": "High",
+      "medium": "Medium",
+      "minutesApprox": "≈ {minutes} min"
+    },
+    "why": {
+      "title": "Why this score?"
+    }
   },
   "settings": {
     "title": "Settings",
@@ -68,6 +108,15 @@
       }
     }
   },
+  "combine": {
+    "labelOption": "Shipping label",
+    "warning": {
+      "deadline": "Some items are near the return deadline"
+    },
+    "selectItems": "Select items to return",
+    "pickupOption": "Pickup",
+    "title": "Combine returns"
+  },
   "claim": {
     "title": "Price-drop claim",
     "items": {
@@ -93,6 +142,8 @@
       "undo": "Undo"
     }
   },
+  "score.pill.medium": "Medium",
+  "score.pill.minutesApprox": "≈{min} min",
   "returns": {
     "title": "Return",
     "reason": {
@@ -120,26 +171,6 @@
       "title": "Select item"
     }
   },
-  "messages": {
-    "title": "Messages"
-  },
-  "bestPrice": {
-    "title": "Best price"
-  },
-  "history": {
-    "refunds": {
-      "title": "Refunds"
-    },
-    "savings": {
-      "title": "Savings"
-    }
-  },
-  "bottomNav": {
-    "settings": "Settings",
-    "home": "Home",
-    "history": "History",
-    "activity": "Activity"
-  },
   "batch": {
     "sections": {
       "returnsSoon": "Returns due next 7 days",
@@ -152,6 +183,36 @@
     "sendAll": "Send all",
     "approveAll": "Approve all",
     "title": "Batch Review"
+  },
+  "score.why.title": "Why this score?",
+  "bottomNav": {
+    "settings": "Settings",
+    "home": "Home",
+    "history": "History",
+    "activity": "Activity"
+  },
+  "messages": {
+    "title": "Messages"
+  },
+  "warranty": {
+    "title": "Warranty",
+    "endsIn": "Coverage ends {date}"
+  },
+  "pd": {
+    "banner": {
+      "cheaper": "Lower price found — Start price-match"
+    }
+  },
+  "score.pill.high": "High",
+  "recall": {
+    "remedy": "Remedy",
+    "affected": "Affected models",
+    "cta": "Start remedy",
+    "hazard": "Hazard",
+    "title": "Safety notices"
+  },
+  "bestPrice": {
+    "title": "Best price"
   },
   "pm": {
     "title": "Price Match",
@@ -167,55 +228,5 @@
       "concise": "Concise",
       "detailed": "Detailed"
     }
-  },
-  "pd": {
-    "banner": {
-      "cheaper": "Lower price found — Start price-match"
-    }
-  },
-  "warranty": {
-    "title": "Warranty",
-    "endsIn": "Coverage ends {date}"
-  },
-  "recall": {
-    "remedy": "Remedy",
-    "affected": "Affected models",
-    "cta": "Start remedy",
-    "hazard": "Hazard",
-    "title": "Safety notices"
-  },
-  "combine": {
-    "labelOption": "Shipping label",
-    "warning": {
-      "deadline": "Some items are near the return deadline"
-    },
-    "selectItems": "Select items to return",
-    "pickupOption": "Pickup",
-    "title": "Combine returns"
-  },
-  "ish": {
-    "outcome": {
-      "approved": "Approved",
-      "later": "Try later",
-      "denied": "Denied"
-    },
-    "title": "In-Store Price Adjust",
-    "script": "Hi! I purchased this item recently and found a lower price at a competitor. Could you help with a price adjustment? I have the receipt and the competitor link/QR here. Thank you!"
-  },
-  "score": {
-    "pill": {
-      "low": "Low",
-      "high": "High",
-      "medium": "Medium",
-      "minutesApprox": "≈ {minutes} min"
-    },
-    "why": {
-      "title": "Why this score?"
-    }
-  },
-  "score.pill.high": "High",
-  "score.pill.medium": "Medium",
-  "score.pill.low": "Low",
-  "score.pill.minutesApprox": "≈{min} min",
-  "score.why.title": "Why this score?"
+  }
 }

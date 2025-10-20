@@ -1,0 +1,75 @@
+'use client';
+
+import React, { useState } from 'react';
+import { t } from '@/rg/copy';
+type Params = { id: string };
+
+export default function PacketPage({ params }: { params: Params }) {
+  const [dataUrl, setDataUrl] = useState<string | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
+
+  function toBase64(str: string) {
+    if (typeof window === 'undefined') return '';
+    try { return btoa(unescape(encodeURIComponent(str))); } catch { return ''; }
+  }
+
+  const onGenerate = () => {
+    const stamp = new Date().toISOString();
+    const content = Packet for \ — \;
+    const b64 = toBase64(content);
+    const url = data:application/pdf;base64,\;
+    setDataUrl(url);
+  };
+
+  return (
+    <main className="mx-auto max-w-screen-sm p-4 space-y-4">
+      <h1 className="text-2xl font-semibold">{t('packet.title')}</h1>
+      <section className="rounded-2xl border p-4 space-y-4">
+        {/* [RG:BLOCK PACKET.STEPS START] */}
+        <ol className="list-decimal pl-5 space-y-4">
+          <li>
+            <h2 className="font-medium">{t('packet.steps.confirm')}</h2>
+            <p className="text-sm opacity-80"> {/* Summary from Message Hub would be rendered here. */}</p>
+          </li>
+          <li>
+            <h2 className="font-medium">{t('packet.steps.attach')}</h2>
+            <input
+              className="mt-2 block"
+              type="file"
+              multiple
+              onChange={(e) => setFiles(Array.from(e.target.files ?? []))}
+              aria-label={t('packet.steps.attach')}
+            />
+            {files.length > 0 && (
+              <ul className="mt-2 text-sm">
+                {files.map((f, i) => (<li key={i}>{f.name}</li>))}
+              </ul>
+            )}
+          </li>
+          <li>
+            <h2 className="font-medium">{t('packet.steps.generate')}</h2>
+            <button
+              type="button"
+              onClick={onGenerate}
+              className="mt-2 rounded-2xl border px-4 py-2"
+            >
+              {t('packet.steps.generate')}
+            </button>
+
+            {dataUrl && (
+              <div className="mt-3 space-y-2">
+                <p className="text-sm">{t('packet.generated.preview')}</p>
+                <iframe
+                  title="Packet preview"
+                  src={dataUrl}
+                  className="h-96 w-full rounded-lg border"
+                />
+              </div>
+            )}
+          </li>
+        </ol>
+        {/* [RG:BLOCK PACKET.STEPS END] */}
+      </section>
+    </main>
+  );
+}
