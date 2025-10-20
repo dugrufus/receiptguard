@@ -20,13 +20,16 @@ export default function Page() {
           <div className="text-sm opacity-80">—</div>
         </div>
         <button type="button" className="rounded-2xl border px-4 h-10">
-          {t('')}
+          {t(''recall.cta'')}
         </button>
       </section>
       {/* [RG:BLOCK RECALL.DETAIL END] */}
     </main>
   );
 }// [RG:BLOCK PD.SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\recall\[id]\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/recall/[id]/page.tsx; Added=True; Reason='appended' }
 }
 
 function Ensure-StringsKeys {
@@ -84,7 +87,7 @@ export default function Page() {
           <div className="text-sm opacity-80">—</div>
         </div>
         <button type="button" className="rounded-2xl border px-4 h-10">
-          {t('')}
+          {t(''recall.cta'')}
         </button>
       </section>
       {/* [RG:BLOCK RECALL.DETAIL END] */}
@@ -113,7 +116,7 @@ export default function Page() {
           <div className="text-sm opacity-80">—</div>
         </div>
         <button type="button" className="rounded-2xl border px-4 h-10">
-          {t('')}
+          {t(''recall.cta'')}
         </button>
       </section>
       {/* [RG:BLOCK RECALL.DETAIL END] */}
@@ -134,4 +137,3 @@ Score bands:
 - Low: Most indicators weak or missing
 
 Approximate minutes are displayed on the pill.
-

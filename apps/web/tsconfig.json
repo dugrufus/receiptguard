@@ -24,7 +24,13 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -37,3 +43,4 @@
     "node_modules"
   ]
 }
+

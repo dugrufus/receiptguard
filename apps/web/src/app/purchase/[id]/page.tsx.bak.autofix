@@ -9,7 +9,7 @@ export default function PurchaseDetailsPage() {
     <main className="p-4 space-y-4">
       <h1 className="text-xl font-semibold">{t('pd.title') ?? 'Purchase Details'}</h1>
 
-      {      {/* [RG:BLOCK PD.CHEAPER_BANNER START] */}
+      {      {      {/* [RG:BLOCK PD.CHEAPER_BANNER START] */}
       <div role="region" aria-label="price-match" className="rounded-2xl border p-4">
         <div className="text-sm">
           {t("pd.banner.cheaper")}
@@ -27,5 +27,4 @@ export default function PurchaseDetailsPage() {
   );
 }
 // [RG:BLOCK PD.SCORE]
-
 

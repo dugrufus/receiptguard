@@ -3,14 +3,16 @@ import Card from '../../components/rg/Card';
 import { t } from '../../rg/i18n/t';
 export default function HistoryPage() {
   return (
-    <main className=""mx-auto max-w-xl pb-20 p-4 space-y-4"">
+    <main className="mx-auto max-w-xl pb-20 p-4 space-y-4">
       {/* [RG:BLOCK HIST.SAVINGS START] */}
-      <Card id=""hist-savings"" title={<span>{t('history.savings.title')}</span>}><div className=""text-sm opacity-80""> </div></Card>
+      <Card id="hist-savings" title={<span>{t('history.savings.title')}</span>}><div className="text-sm opacity-80"> </div></Card>
       {/* [RG:BLOCK HIST.SAVINGS END] */}
       {/* [RG:BLOCK HIST.REFUNDS START] */}
-      <Card id=""hist-refunds"" title={<span>{t('history.refunds.title')}</span>}><div className=""text-sm opacity-80""> </div></Card>
+      <Card id="hist-refunds" title={<span>{t('history.refunds.title')}</span>}><div className="text-sm opacity-80"> </div></Card>
       {/* [RG:BLOCK HIST.REFUNDS END] */}
       <BottomNav />
     </main>
   );
 }
+
+

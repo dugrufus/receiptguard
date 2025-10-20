@@ -35,6 +35,9 @@ export default function HomePage() {
 // Chip: ""Combine returns"" — link to /return/combine/[merchant]
 // NOTE: Hook up to t('combine.title') per copy rules.
 // [RG:BLOCK HOME.RETURNS_COMBINE_CHIP END]// [RG:BLOCK HOME.PRICE_DROP_SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\home\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/home/page.tsx; Added=True; Reason='appended' }
 }
 
 function Ensure-StringsKeys {
@@ -159,6 +162,9 @@ Score bands:
 
 Approximate minutes are displayed on the pill.
 // [RG:BLOCK HOME.RETURN_SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\home\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/home/page.tsx; Added=True; Reason='appended' }
 }
 
 function Ensure-StringsKeys {
@@ -231,6 +237,9 @@ export default function HomePage() {
 // Chip: ""Combine returns"" — link to /return/combine/[merchant]
 // NOTE: Hook up to t('combine.title') per copy rules.
 // [RG:BLOCK HOME.RETURNS_COMBINE_CHIP END]// [RG:BLOCK HOME.PRICE_DROP_SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\home\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/home/page.tsx; Added=True; Reason='appended' }
 }
 
 function Ensure-StringsKeys {
@@ -392,6 +401,9 @@ export default function HomePage() {
 // Chip: ""Combine returns"" — link to /return/combine/[merchant]
 // NOTE: Hook up to t('combine.title') per copy rules.
 // [RG:BLOCK HOME.RETURNS_COMBINE_CHIP END]// [RG:BLOCK HOME.PRICE_DROP_SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\home\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/home/page.tsx; Added=True; Reason='appended' }
 }
 
 function Ensure-StringsKeys {
@@ -530,5 +542,4 @@ Score bands:
 - Low: Most indicators weak or missing
 
 Approximate minutes are displayed on the pill.
-
 

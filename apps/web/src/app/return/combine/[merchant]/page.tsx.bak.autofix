@@ -11,6 +11,9 @@ export default function CombineReturnPage() {
   // TODO: Wire real data & i18n t() helper. Scaffold only.
   return null;
 }// [RG:BLOCK PD.SCORE]
+"
+  Add-Content -LiteralPath C:\Projects\receiptguard\apps\web\src\app\return\combine\[merchant]\page.tsx -Value  -Encoding utf8
+  return @{ File=apps/web/src/app/return/combine/[merchant]/page.tsx; Added=True; Reason='appended' }
 }
 
 function Ensure-StringsKeys {
@@ -86,4 +89,3 @@ Score bands:
 - Low: Most indicators weak or missing
 
 Approximate minutes are displayed on the pill.
-

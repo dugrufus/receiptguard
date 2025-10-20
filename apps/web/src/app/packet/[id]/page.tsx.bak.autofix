@@ -73,4 +73,3 @@ export default function PacketPage({ params }: { params: Params }) {
     </main>
   );
 }
-
