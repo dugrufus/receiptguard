@@ -14,12 +14,12 @@ export default function PacketPage({ params }: { params: Params }) {
   }
 
   const onGenerate = () => {
-  const stamp = new Date().toISOString();
-  const content = `Packet for ${params.id} — ${stamp}`;
-  const b64 = toBase64(content);
-  const url = `data:application/pdf;base64,${b64}`;
-  setDataUrl(url);
-};
+    const stamp = new Date().toISOString();
+    const content = Packet for \ — \;
+    const b64 = toBase64(content);
+    const url = data:application/pdf;base64,\;
+    setDataUrl(url);
+  };
 
   return (
     <main className="mx-auto max-w-screen-sm p-4 space-y-4">
