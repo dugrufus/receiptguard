@@ -1,14 +1,10 @@
-import Link from 'next/link';
-import { ReactNode } from 'react';
-type Props = { icon?: ReactNode; line?: ReactNode; cta?: { href: string; label: ReactNode } };
-export default function EmptyState({ icon, line, cta }: Props) {
+"use client";
+import * as React from "react";
+
+export function EmptyState({ message }: { message: string }) {
   return (
-    // [RG:BLOCK UI.EMPTY JSX START]
-    <div className="grid place-items-center gap-3 p-6 text-center opacity-90">
-      {icon && <div className="text-3xl">{icon}</div>}
-      {line && <p className="text-sm">{line}</p>}
-      {cta && <Link href={cta.href} className="rounded-full border px-3 py-1 text-sm">{cta.label}</Link>}
+    <div className="text-center text-sm text-gray-600 py-8" role="status">
+      {message}
     </div>
-    // [RG:BLOCK UI.EMPTY JSX END]
   );
 }

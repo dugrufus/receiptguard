@@ -1,40 +1,35 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { t } from "@/rg/copy";
+import { t } from "../../rg/i18n";
+
+const tabs = [
+  { href: "/home", key: "nav.home" },
+  { href: "/activity", key: "nav.activity" },
+  { href: "/history", key: "nav.history" },
+  { href: "/settings", key: "nav.settings" },
+];
 
 export default function BottomNav() {
-  const pathname = usePathname();
-  const items = [
-    { href: "/", key: "bottomNav.home" },
-    { href: "/activity", key: "bottomNav.activity" },
-    { href: "/settings", key: "bottomNav.settings" },
-  ];
+  const path = usePathname() || "";
   return (
-    <nav
-      aria-label="Main"
-      role="navigation"
-      className="fixed bottom-0 left-0 right-0 border-t bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-    >
-      {/* [RG:BLOCK UI.BOTTOM_NAV JSX START] */}
-      <ul className="mx-auto grid max-w-xl grid-cols-3 gap-0 text-sm">
-        {items.map(({ href, key }) => {
-          const active = pathname === href;
+    <nav className="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur border-t z-40" role="navigation" aria-label="Primary">
+      <ul className="grid grid-cols-4">
+        {tabs.map((tdef) => {
+          const current = path === tdef.href || (tdef.href !== "/" && path.startsWith(tdef.href));
           return (
-            <li key={href}>
+            <li key={tdef.href}>
               <Link
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className={`flex h-12 items-center justify-center ${active ? "font-semibold" : ""}`}
+                href={tdef.href}
+                className={"block text-center text-sm py-3 min-h-[44px] focus:outline-none focus-visible:ring " + (current ? "font-semibold" : "text-gray-600")}
+                aria-current={current ? "page" : undefined}
               >
-                {t(key) ?? key}
+                {t(tdef.key)}
               </Link>
             </li>
           );
         })}
       </ul>
-      {/* [RG:BLOCK UI.BOTTOM_NAV JSX END] */}
     </nav>
   );
 }

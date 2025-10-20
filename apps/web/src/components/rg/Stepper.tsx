@@ -1,16 +1,12 @@
+"use client";
 import * as React from "react";
 
-type StepperProps = { step: number; total: number };
-
-export function Stepper({ step, total }: StepperProps) {
+export function Stepper({ step, total, children }: { step: number; total: number; children?: React.ReactNode }) {
+  const label = `Step ${step} of ${total}`;
   return (
-    <>
-      {/* [RG:BLOCK UI.STEPPER JSX START] */}
-      <div aria-live="polite" className="text-sm opacity-80">
-        <span aria-label={`${step} of ${total}`}>{step} / {total}</span>
-      </div>
-      {/* [RG:BLOCK UI.STEPPER JSX END] */}
-    </>
+    <div role="group" aria-label={label} aria-live="polite" className="flex items-center gap-2">
+      <span className="text-sm font-medium">{label}</span>
+      {children}
+    </div>
   );
 }
-export default Stepper;

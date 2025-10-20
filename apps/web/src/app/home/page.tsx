@@ -1,26 +1,108 @@
-import { t } from "@/rg/copy/t";
 import Link from "next/link";
+import BottomNav from "@/components/rg/BottomNav";
+import { Card } from "@/components/rg/Card";
+import { EmptyState } from "@/components/rg/EmptyState";
 import { t } from "@/rg/i18n";
+import { formatAbsDateWithWeekday, formatCurrency } from "@/rg/utils/format";
+import { daysUntilReturnBy, urgencyColor } from "@/rg/utils/return";
+import { getMockPriceDrops, getMockReturnWindows, getMockTracking, getMockPurchases, getMockSafetyNoticesCount } from "@/rg/mocks/loaders";
 
 export default function HomePage() {
+  const priceDrops = getMockPriceDrops();
+  const returns = getMockReturnWindows();
+  const tracking = getMockTracking();
+  const purchases = getMockPurchases();
+  const safetyCount = getMockSafetyNoticesCount();
+
   return (
-    <main className="mx-auto max-w-xl pb-20 p-4 space-y-4">
-      {/* [RG:BLOCK HOME.PRICE_DROPS START] */}
-      <section className="rounded-2xl border p-4">
-        <h2 className="font-medium">{t("home.priceDrops.title") ?? "Price drops"}</h2>
-        <div className="text-sm opacity-80"> </div>
-      </section>
-      {/* [RG:BLOCK HOME.PRICE_DROPS END] */}
-    {/* [RG:BLOCK HOME.ADD_PURCHASE_FAB START] */}
-<Link
-  href="/add-purchase"
-  aria-label={t('add.title')}
-  className="fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full shadow-lg ring-1 ring-black/5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
->
-  <span className="sr-only">{t('add.title')}</span>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-7 w-7" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
-</Link>
-{/* [RG:BLOCK HOME.ADD_PURCHASE_FAB END] */}
-</main>
+    <>
+      <main className="pb-24 px-4 pt-4 max-w-screen-sm mx-auto" role="main">
+        {/* Header actions */}
+        <div className="flex items-center gap-2 mb-4">
+          <input
+            type="search"
+            placeholder={t("home.header.searchPlaceholder")}
+            aria-label={t("a11y.searchStores")}
+            className="flex-1 rounded-xl border px-3 py-3 min-h-[44px] focus:outline-none focus-visible:ring"
+          />
+          <Link href="/best-price/photo" aria-label={t("buttons.photoSearch")} className="rounded-xl border px-3 py-3 min-h-[44px] focus:outline-none focus-visible:ring">
+            {t("buttons.photoSearch")}
+          </Link>
+        </div>
+
+        {/* Safety notices */}
+        <Card title={t("home.sections.safety.title")} actions={<span className="inline-flex items-center justify-center text-xs rounded-full border px-2 py-0.5">{t("home.sections.safety.count").replace("{count}", String(safetyCount))}</span>}>
+          <Link href="/recall/preview" className="text-sm underline">{t("common.view")}</Link>
+        </Card>
+
+        <div className="grid gap-4 mt-4">
+          {/* Price Drops */}
+          <Card title={t("home.sections.priceDrops.title")} actions={<Link href="/best-price/results" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {priceDrops.length === 0 ? <EmptyState message={t("home.empty.priceDrops")} /> : (
+              <ul className="space-y-2">
+                {priceDrops.map(pd => (
+                  <li key={pd.id} className="flex items-center justify-between">
+                    <span className="text-sm">{pd.item}</span>
+                    <span className="text-sm font-medium">{formatCurrency(pd.competitorTotal)} <span className="opacity-60">({pd.dropPercent}%)</span></span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+
+          {/* Return Windows */}
+          <Card title={t("home.sections.returnWindows.title")} actions={<Link href="/return" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {returns.length === 0 ? <EmptyState message={t("home.empty.returnWindows")} /> : (
+              <ul className="space-y-2">
+                {returns.map(rw => {
+                  const d = daysUntilReturnBy({ returnBy: rw.returnBy });
+                  return (
+                    <li key={rw.id} className="flex items-center justify-between">
+                      <span className="text-sm">{rw.store}</span>
+                      <span className={"text-sm font-medium " + urgencyColor(d)}>{formatAbsDateWithWeekday(rw.returnBy)}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </Card>
+
+          {/* Tracking */}
+          <Card title={t("home.sections.tracking.title")} actions={<Link href="/tracking" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {tracking.length === 0 ? <EmptyState message={t("home.empty.tracking")} /> : (
+              <ul className="space-y-2">
+                {tracking.map(tr => (
+                  <li key={tr.id} className="flex items-center justify-between">
+                    <span className="text-sm">{tr.carrier}</span>
+                    <span className="text-sm">{tr.status}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+
+          {/* Purchases */}
+          <Card title={t("home.sections.purchases.title")} actions={<Link href="/purchases" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {purchases.length === 0 ? <EmptyState message={t("home.empty.purchases")} /> : (
+              <ul className="space-y-2">
+                {purchases.map(po => (
+                  <li key={po.id} className="flex items-center justify-between">
+                    <span className="text-sm">{po.store}</span>
+                    <span className="text-sm font-medium">{formatCurrency(po.total)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+        </div>
+
+        {/* Floating Actions */}
+        <div className="fixed right-4 bottom-20 flex flex-col items-end gap-2">
+          <Link href="/add-purchase" className="rounded-full shadow-lg bg-black text-white px-4 py-3 min-h-[44px] focus:outline-none focus-visible:ring">{t("buttons.addPurchase")}</Link>
+          <Link href="/return/combine" className="rounded-full border bg-white px-4 py-2 min-h-[44px] focus:outline-none focus-visible:ring">{t("buttons.combineReturns")}</Link>
+        </div>
+      </main>
+      <BottomNav />
+    </>
   );
 }

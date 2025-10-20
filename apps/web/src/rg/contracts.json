@@ -25,5 +25,15 @@
     "affectedModels": [
       "string"
     ]
+  },
+  "agg": {
+    "scoring": {
+      "strategy": "mock",
+      "mock": {
+        "note": "Mock confidence for matched-as; replace with model-driven score later.",
+        "variance": 0.1,
+        "base": 0.82
+      }
+    }
   }
 }

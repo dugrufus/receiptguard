@@ -1,32 +1,6 @@
 {
   "home": {
-    "title": "Your dashboard",
-    "sections": {
-      "tracking": {
-        "title": "Tracking"
-      },
-      "priceDrops": {
-        "title": "Price drops"
-      },
-      "purchases": {
-        "title": "Purchases"
-      },
-      "returns": {
-        "title": "Returns"
-      }
-    },
-    "priceDrops": {
-      "title": "Price drops"
-    },
-    "returnWindows": {
-      "title": "Return windows"
-    },
-    "tracking": {
-      "title": "Tracking"
-    },
-    "purchases": {
-      "title": "Purchases"
-    }
+    "header": {}
   },
   "packet": {
     "title": "Auto-Docs packet builder",
@@ -192,7 +166,28 @@
     "activity": "Activity"
   },
   "messages": {
-    "title": "Messages"
+    "title": "Messages",
+    "unread": {
+      "badge": "unread"
+    },
+    "send": "Send",
+    "compose": {
+      "ariaLabel": "Compose message"
+    },
+    "quick": {
+      "moreInfo": "More info",
+      "nudge": "Nudge",
+      "confirm": "Confirm"
+    },
+    "search": {
+      "placeholder": "Search by subject or merchant"
+    },
+    "thread": {
+      "title": "Conversation"
+    },
+    "sla": {
+      "hint": "Typical response in ~24h."
+    }
   },
   "warranty": {
     "title": "Warranty",
@@ -247,5 +242,64 @@
       "title": "Scan receipt"
     },
     "title": "Add purchase"
+  },
+  "agg": {
+    "search": {
+      "placeholder": "Search stores",
+      "cta": "Search"
+    },
+    "title": "Best Price",
+    "filters": {
+      "used": "Used",
+      "fast": "Fast",
+      "new": "New",
+      "refurb": "Refurb",
+      "pickup": "Pickup"
+    },
+    "results": {
+      "title": "Results",
+      "empty": "No results yet."
+    },
+    "sort": {
+      "total": "Total",
+      "rating": "Rating",
+      "item": "Item price",
+      "fastest": "Fastest"
+    },
+    "matchedAs": {
+      "strip": "Matched as {id} • Confidence {percent} • Not this item?"
+    },
+    "photo": {
+      "title": "Photo search",
+      "cta": "Photo search"
+    },
+    "privacy": {
+      "note": "Your photo is processed securely and not saved unless you add the product."
+    },
+    "variants": {
+      "title": "Variants"
+    },
+    "offer": {
+      "goToStore": "Go to store",
+      "total": "Total",
+      "tax": "Est. tax",
+      "back": "Back to results",
+      "item": "Item",
+      "trackPrice": "Track price",
+      "shipping": "Shipping",
+      "title": "Offer detail"
+    }
+  },
+  "common": {
+    "view": "View",
+    "seeAll": "See all"
+  },
+  "buttons": {
+    "combineReturns": "Combine returns",
+    "photoSearch": "Photo search",
+    "addPurchase": "Add purchase"
+  },
+  "a11y": {
+    "searchStores": "Search stores"
   }
 }

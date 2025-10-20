@@ -1,43 +1,13 @@
 "use client";
-
 import * as React from "react";
 
-type Props = {
-  summary: React.ReactNode;
-  children?: React.ReactNode;
-  defaultOpen?: boolean;
-  className?: string;
-};
-
-export default function CollapsibleSection({
-  summary,
-  children,
-  defaultOpen = false,
-  className = "",
-}: Props) {
-  const [open, setOpen] = React.useState(defaultOpen);
-  const toggle = () => setOpen((o) => !o);
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggle();
-    }
-  };
-
+export function CollapsibleSection(props: { title: string; children?: React.ReactNode }) {
   return (
-    <section className={`rounded-xl border ${className}`}>
-      <div
-        role="button"
-        tabIndex={0}
-        aria-expanded={open}
-        onClick={toggle}
-        onKeyDown={onKeyDown}
-        className="flex items-center justify-between gap-2 p-4 cursor-pointer select-none"
-      >
-        <div>{summary}</div>
-        <div aria-hidden="true">{open ? "−" : "+"}</div>
-      </div>
-      {open && <div className="p-4">{children}</div>}
-    </section>
+    <details className="rounded-xl border px-4 py-3">
+      <summary className="cursor-pointer select-none text-base font-medium focus:outline-none focus-visible:ring min-h-[44px] flex items-center">
+        {props.title}
+      </summary>
+      <div className="mt-2">{props.children}</div>
+    </details>
   );
 }
