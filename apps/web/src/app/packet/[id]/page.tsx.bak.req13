@@ -68,26 +68,8 @@ export default function PacketPage({ params }: any) {
         </ol>
         {/* [RG:BLOCK PACKET.STEPS END] */}
       </section>
-          {/* [RG:BLOCK PACKET.STEPS] */}
-      <section className="rounded-2xl border p-4">
-        <ol className="list-decimal ml-5 space-y-2 text-sm">
-          <li>Confirm facts</li>
-          <li>Add attachments</li>
-          <li>
-            <button type="button" onClick={onGenerate} className="rounded-xl border px-3 h-9">
-              Generate (mock)
-            </button>
-          </li>
-        </ol>
-        {dataUrl && (
-          <div className="mt-3 text-xs break-all">
-            Preview (mock): <a href={dataUrl} target="_blank" rel="noopener noreferrer">Open</a>
-          </div>
-        )}
-      </section>
-</main>
+    </main>
   );
 }
-
 
 

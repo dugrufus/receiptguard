@@ -15,7 +15,7 @@ const t = (k: string): string => {
 };
 
 export default function Page({ params }: any): JSX.Element {
-  const { id } = (params as { id: string });
+  const { id } = use(params);
   const [outcome, setOutcome] = useState<"approved" | "denied" | "later" | "">("");
 
   return (
@@ -77,5 +77,4 @@ export default function Page({ params }: any): JSX.Element {
     </main>
   );
 }
-
 
