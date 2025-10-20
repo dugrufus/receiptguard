@@ -228,6 +228,24 @@
       "concise": "Concise",
       "detailed": "Detailed"
     }
+  },
+  "add": {
+    "order": {
+      "title": "Enter order details"
+    },
+    "paste": {
+      "hint": "Paste an email or receipt text; we’ll parse key fields.",
+      "title": "Paste details"
+    },
+    "cta": {
+      "save": "Save"
+    },
+    "ocr": {
+      "confidence": "OCR confidence"
+    },
+    "scan": {
+      "title": "Scan receipt"
+    },
+    "title": "Add purchase"
   }
 }
-
