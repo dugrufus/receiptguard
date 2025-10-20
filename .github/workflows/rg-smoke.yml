@@ -1,0 +1,23 @@
+name: RG Smoke
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/**'
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+      - name: Run smoke tests
+        run: pnpm rg:smoke
