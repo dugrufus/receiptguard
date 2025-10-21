@@ -28,3 +28,8 @@
 - [RG:BLOCK MSG.COMPOSE] — Request 16 — Composer with quick replies (Nudge/More info/Confirm)
 
 - **RECALL.INDEX** — Hotfix: Add index route for safety notices. Purpose: resolve /recall 404 and provide list container. Date: 2025-10-20.
+- **[RG:BLOCK RECALL.HEADER]** — Sticky header and top filters (Rev C: Navigation & End-of-List Filters), 2025-10-20.
+- **[RG:BLOCK RECALL.FILTERS_TOP]** — Top chip filters (All/Active/Resolved), 2025-10-20.
+- **[RG:BLOCK RECALL.LIST]** — Calm list rows (≥56 px, chevron, status pill, hazard/affected lines), 2025-10-20.
+- **[RG:BLOCK RECALL.FILTERS_BOTTOM]** — End-of-list duplicate filter chip row (Rev C), 2025-10-20.
+- **[RG:BLOCK RECALL.DETAIL]** — Detail sections: Hazard, Remedy, Affected + sticky primary CTA “Start remedy”, 2025-10-20.
