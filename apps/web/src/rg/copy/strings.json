@@ -1,14 +1,17 @@
 {
-  "score.pill.low": "Low",
-  "packet": {
-    "steps": {
-      "generate": "Generate",
-      "attach": "Attachments",
-      "confirm": "Confirm facts"
+  "pm": {
+    "rules": {
+      "ineligible": "Not eligible: {reason}",
+      "title": "Eligibility rules"
     },
-    "title": "Auto-Docs packet builder",
-    "generated": {
-      "preview": "Preview generated packet"
+    "title": "Price Match",
+    "evidence": {
+      "title": "Evidence"
+    },
+    "draft": {
+      "concise": "Concise",
+      "detailed": "Detailed",
+      "title": "Draft message"
     }
   },
   "recall": {
@@ -21,39 +24,70 @@
       "empty": "No safety notices right now."
     }
   },
-  "common": {
-    "view": "View",
-    "seeAll": "See all"
+  "ish": {
+    "script": "Hi! I purchased this item recently and found a lower price at a competitor. Could you help with a price adjustment? I have the receipt and the competitor link/QR here. Thank you!",
+    "outcome": {
+      "later": "Try later",
+      "approved": "Approved",
+      "denied": "Denied"
+    },
+    "title": "In-Store Price Adjust"
   },
-  "score.pill.medium": "Medium",
-  "claim": {
-    "items": {
-      "title": "Select items"
+  "packet": {
+    "steps": {
+      "generate": "Generate",
+      "attach": "Attachments",
+      "confirm": "Confirm facts"
     },
-    "toast": {
-      "undo": "Undo",
-      "queued": "Claim queued. Undo?"
-    },
-    "amount": {
-      "policyCapHint": "Subject to policy caps",
-      "title": "Claim amount",
-      "inputLabel": "Requested percent"
-    },
-    "send": {
-      "cta": "Send claim"
-    },
-    "title": "Price-drop claim",
-    "draft": {
-      "tabs": {
-        "pdf": "PDF",
-        "email": "Email"
-      },
-      "title": "Draft"
+    "title": "Auto-Docs packet builder",
+    "generated": {
+      "preview": "Preview generated packet"
     }
+  },
+  "add": {
+    "paste": {
+      "hint": "Paste an email or receipt text; we’ll parse key fields.",
+      "title": "Paste details"
+    },
+    "order": {
+      "title": "Enter order details"
+    },
+    "cta": {
+      "save": "Save"
+    },
+    "scan": {
+      "title": "Scan receipt"
+    },
+    "ocr": {
+      "confidence": "OCR confidence"
+    },
+    "title": "Add purchase"
+  },
+  "pd": {
+    "banner": {
+      "cheaper": "Lower price found — Start price-match"
+    }
+  },
+  "recall.empty": "No active recalls for your purchases.",
+  "recall.viewAllPurchases": "View all purchases",
+  "a11y": {
+    "searchStores": "Search stores"
+  },
+  "bottomNav": {
+    "history": "History",
+    "home": "Home",
+    "activity": "Activity",
+    "settings": "Settings"
+  },
+  "warranty": {
+    "endsIn": "Coverage ends {date}",
+    "title": "Warranty"
   },
   "bestPrice": {
     "title": "Best price"
   },
+  "score.why.title": "Why this score?",
+  "recall.title": "Safety notices",
   "messages": {
     "thread": {
       "title": "Conversation"
@@ -78,19 +112,12 @@
       "ariaLabel": "Compose message"
     }
   },
+  "score.pill.minutesApprox": "≈{min} min",
   "nav": {
     "history": "History",
     "activity": "Activity",
     "home": "Home",
     "settings": "Settings"
-  },
-  "history": {
-    "savings": {
-      "title": "Savings"
-    },
-    "refunds": {
-      "title": "Refunds"
-    }
   },
   "returns": {
     "urgency": {
@@ -119,6 +146,25 @@
       "title": "How will you return?"
     }
   },
+  "combine": {
+    "labelOption": "Shipping label",
+    "title": "Combine returns",
+    "warning": {
+      "deadline": "Some items are near the return deadline"
+    },
+    "selectItems": "Select items to return",
+    "pickupOption": "Pickup"
+  },
+  "history": {
+    "savings": {
+      "title": "Savings"
+    },
+    "refunds": {
+      "title": "Refunds"
+    }
+  },
+  "score.pill.high": "High",
+  "score.pill.medium": "Medium",
   "activity": {
     "filters": {
       "messages": "Messages",
@@ -129,105 +175,6 @@
     },
     "title": "Activity",
     "backToHome": "Back to Home"
-  },
-  "score": {
-    "why": {
-      "title": "Why this score?"
-    },
-    "pill": {
-      "medium": "Medium",
-      "high": "High",
-      "low": "Low",
-      "minutesApprox": "≈ {minutes} min"
-    }
-  },
-  "score.pill.minutesApprox": "≈{min} min",
-  "pd": {
-    "banner": {
-      "cheaper": "Lower price found — Start price-match"
-    }
-  },
-  "score.pill.high": "High",
-  "combine": {
-    "labelOption": "Shipping label",
-    "title": "Combine returns",
-    "warning": {
-      "deadline": "Some items are near the return deadline"
-    },
-    "selectItems": "Select items to return",
-    "pickupOption": "Pickup"
-  },
-  "ish": {
-    "script": "Hi! I purchased this item recently and found a lower price at a competitor. Could you help with a price adjustment? I have the receipt and the competitor link/QR here. Thank you!",
-    "outcome": {
-      "later": "Try later",
-      "approved": "Approved",
-      "denied": "Denied"
-    },
-    "title": "In-Store Price Adjust"
-  },
-  "bottomNav": {
-    "history": "History",
-    "home": "Home",
-    "activity": "Activity",
-    "settings": "Settings"
-  },
-  "score.why.title": "Why this score?",
-  "pm": {
-    "rules": {
-      "ineligible": "Not eligible: {reason}",
-      "title": "Eligibility rules"
-    },
-    "title": "Price Match",
-    "evidence": {
-      "title": "Evidence"
-    },
-    "draft": {
-      "concise": "Concise",
-      "detailed": "Detailed",
-      "title": "Draft message"
-    }
-  },
-  "home": {
-    "sections": {
-      "purchases": {
-        "title": "Purchases"
-      },
-      "priceDrops": {
-        "title": "Price Drops"
-      },
-      "safety": {
-        "title": "Safety notices",
-        "count": "{count} notices"
-      },
-      "returnWindows": {
-        "title": "Return Windows"
-      },
-      "tracking": {
-        "title": "Tracking"
-      }
-    },
-    "actions": {
-      "combineReturns": "Combine returns",
-      "addPurchase": "Add purchase"
-    },
-    "empty": {
-      "purchases": "No purchases yet.",
-      "priceDrops": "No price drops yet.",
-      "returnWindows": "No return windows found.",
-      "tracking": "No shipments to track."
-    },
-    "header": {
-      "photo": "Photo search",
-      "searchPlaceholder": "Search stores"
-    }
-  },
-  "a11y": {
-    "searchStores": "Search stores"
-  },
-  "warranty": {
-    "endsIn": "Coverage ends {date}",
-    "title": "Warranty"
   },
   "settings": {
     "privacy": {
@@ -258,43 +205,19 @@
       "title": "Household"
     }
   },
-  "batch": {
-    "sections": {
-      "returnsSoon": "Returns due next 7 days",
-      "priceDrops": "Price drops",
-      "lateDeliveries": "Late deliveries"
+  "recall.affected": "Affected models",
+  "score": {
+    "why": {
+      "title": "Why this score?"
     },
-    "approveAll": "Approve all",
-    "sendAll": "Send all",
-    "title": "Batch Review",
-    "throttle": {
-      "note": "Max 1 message per merchant per hour"
+    "pill": {
+      "medium": "Medium",
+      "high": "High",
+      "low": "Low",
+      "minutesApprox": "≈ {minutes} min"
     }
   },
-  "buttons": {
-    "addPurchase": "Add purchase",
-    "photoSearch": "Photo search",
-    "combineReturns": "Combine returns"
-  },
-  "add": {
-    "paste": {
-      "hint": "Paste an email or receipt text; we’ll parse key fields.",
-      "title": "Paste details"
-    },
-    "order": {
-      "title": "Enter order details"
-    },
-    "cta": {
-      "save": "Save"
-    },
-    "scan": {
-      "title": "Scan receipt"
-    },
-    "ocr": {
-      "confidence": "OCR confidence"
-    },
-    "title": "Add purchase"
-  },
+  "recall.hazard": "Hazard",
   "agg": {
     "matchedAs": {
       "strip": "Matched as {id} • Confidence {percent} • Not this item?"
@@ -340,6 +263,90 @@
       "total": "Total",
       "item": "Item price",
       "rating": "Rating"
+    }
+  },
+  "recall.remedy": "Remedy",
+  "claim": {
+    "items": {
+      "title": "Select items"
+    },
+    "toast": {
+      "undo": "Undo",
+      "queued": "Claim queued. Undo?"
+    },
+    "amount": {
+      "policyCapHint": "Subject to policy caps",
+      "title": "Claim amount",
+      "inputLabel": "Requested percent"
+    },
+    "send": {
+      "cta": "Send claim"
+    },
+    "title": "Price-drop claim",
+    "draft": {
+      "tabs": {
+        "pdf": "PDF",
+        "email": "Email"
+      },
+      "title": "Draft"
+    }
+  },
+  "batch": {
+    "sections": {
+      "returnsSoon": "Returns due next 7 days",
+      "priceDrops": "Price drops",
+      "lateDeliveries": "Late deliveries"
+    },
+    "approveAll": "Approve all",
+    "sendAll": "Send all",
+    "title": "Batch Review",
+    "throttle": {
+      "note": "Max 1 message per merchant per hour"
+    }
+  },
+  "common": {
+    "view": "View",
+    "seeAll": "See all"
+  },
+  "recall.cta": "Start remedy",
+  "score.pill.low": "Low",
+  "buttons": {
+    "addPurchase": "Add purchase",
+    "photoSearch": "Photo search",
+    "combineReturns": "Combine returns"
+  },
+  "home": {
+    "sections": {
+      "purchases": {
+        "title": "Purchases"
+      },
+      "priceDrops": {
+        "title": "Price Drops"
+      },
+      "safety": {
+        "title": "Safety notices",
+        "count": "{count} notices"
+      },
+      "returnWindows": {
+        "title": "Return Windows"
+      },
+      "tracking": {
+        "title": "Tracking"
+      }
+    },
+    "actions": {
+      "combineReturns": "Combine returns",
+      "addPurchase": "Add purchase"
+    },
+    "empty": {
+      "purchases": "No purchases yet.",
+      "priceDrops": "No price drops yet.",
+      "returnWindows": "No return windows found.",
+      "tracking": "No shipments to track."
+    },
+    "header": {
+      "photo": "Photo search",
+      "searchPlaceholder": "Search stores"
     }
   }
 }
