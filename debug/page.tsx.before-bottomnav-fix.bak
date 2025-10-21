@@ -1,0 +1,118 @@
+import { formatAbsDateWithWeekday, formatCurrency } from "@/rg/utils/format";;
+import fmt, { formatAbsDateWithWeekday as _dFmt, formatCurrency as _cFmt } from "@/rg/utils/format";
+import { getMockPriceDrops, getMockReturnWindows, getMockTracking, getMockPurchases, getMockSafetyNoticesCount } from "@/rg/mocks/loaders";;
+import { tt } from "@/rg/i18n";
+import Link from "next/link";
+import { t } from "@/rg/i18n";
+import { Card } from "@/components/rg/Card";
+import { urgencyColor } from "@/rg/utils/deadline";
+// DEV-ONLY fallback: daysUntilReturnBy — keeps SSR alive if util isn’t wired yet.
+function daysUntilReturnBy({ returnBy }: { returnBy: string | Date }): number {
+  const due = new Date(returnBy);
+  const now = new Date();
+  const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const ms = startOfDay(due).getTime() - startOfDay(now).getTime();
+  return Math.ceil(ms / 86400000); // may be negative if past due
+}
+const formatAbsDateWithWeekday = _dFmt ?? fmt.formatAbsDateWithWeekday;
+const formatCurrency = _cFmt ?? fmt.formatCurrency;
+
+export default function HomePage() {
+  const priceDrops = getMockPriceDrops();
+  const returns = getMockReturnWindows();
+  const tracking = getMockTracking();
+  const purchases = getMockPurchases();
+  const safetyCount = getMockSafetyNoticesCount();
+
+  return (
+    <>
+      <main className="pb-24 px-4 pt-4 max-w-screen-sm mx-auto" role="main">
+        {/* Header actions */}
+        <div className="flex items-center gap-2 mb-4">
+          <input
+            type="search"
+            placeholder={t("home.header.searchPlaceholder")}
+            aria-label={t("a11y.searchStores")}
+            className="flex-1 rounded-xl border px-3 py-3 min-h-[44px] focus:outline-none focus-visible:ring"
+          />
+          <Link href="/best-price/photo" aria-label={t("buttons.photoSearch")} className="rounded-xl border px-3 py-3 min-h-[44px] focus:outline-none focus-visible:ring">
+            {t("buttons.photoSearch")}
+          </Link>
+        </div>
+
+        {/* Safety notices */}
+        <Card title={t("home.sections.safety.title")} actions={<span className="inline-flex items-center justify-center text-xs rounded-full border px-2 py-0.5">{t("home.sections.safety.count").replace("{count}", String(safetyCount))}</span>}>
+          <Link href="/recall/preview" className="text-sm underline">{t("common.view")}</Link>
+        </Card>
+
+        <div className="grid gap-4 mt-4">
+          {/* Price Drops */}
+          <Card title={t("home.sections.priceDrops.title")} actions={<Link href="/best-price/results" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {priceDrops.length === 0 ? <EmptyState message={t("home.empty.priceDrops")} /> : (
+              <ul className="space-y-2">
+                {priceDrops.map(pd => (
+                  <li key={pd.id} className="flex items-center justify-between">
+                    <span className="text-sm">{pd.item}</span>
+                    <span className="text-sm font-medium">{formatCurrency(pd.competitorTotal)} <span className="opacity-60">({pd.dropPercent}%)</span></span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+
+          {/* Return Windows */}
+          <Card title={t("home.sections.returnWindows.title")} actions={<Link href="/return" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {returns.length === 0 ? <EmptyState message={t("home.empty.returnWindows")} /> : (
+              <ul className="space-y-2">
+                {returns.map(rw => {
+                  const d = daysUntilReturnBy({ returnBy: rw.returnBy });
+                  return (
+                    <li key={rw.id} className="flex items-center justify-between">
+                      <span className="text-sm">{rw.store}</span>
+                      <span className={"text-sm font-medium " + urgencyColor(d)}>{formatAbsDateWithWeekday(rw.returnBy)}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </Card>
+
+          {/* Tracking */}
+          <Card title={t("home.sections.tracking.title")} actions={<Link href="/tracking" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {tracking.length === 0 ? <EmptyState message={t("home.empty.tracking")} /> : (
+              <ul className="space-y-2">
+                {tracking.map(tr => (
+                  <li key={tr.id} className="flex items-center justify-between">
+                    <span className="text-sm">{tr.carrier}</span>
+                    <span className="text-sm">{tr.status}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+
+          {/* Purchases */}
+          <Card title={t("home.sections.purchases.title")} actions={<Link href="/purchases" className="text-sm underline">{t("common.seeAll")}</Link>}>
+            {purchases.length === 0 ? <EmptyState message={t("home.empty.purchases")} /> : (
+              <ul className="space-y-2">
+                {purchases.map(po => (
+                  <li key={po.id} className="flex items-center justify-between">
+                    <span className="text-sm">{po.store}</span>
+                    <span className="text-sm font-medium">{formatCurrency(po.total)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+        </div>
+
+        {/* Floating Actions */}
+        <div className="fixed right-4 bottom-20 flex flex-col items-end gap-2">
+          <Link href="/add-purchase" className="rounded-full shadow-lg bg-black text-white px-4 py-3 min-h-[44px] focus:outline-none focus-visible:ring">{t("buttons.addPurchase")}</Link>
+          <Link href="/return/combine" className="rounded-full border bg-white px-4 py-2 min-h-[44px] focus:outline-none focus-visible:ring">{t("buttons.combineReturns")}</Link>
+        </div>
+      </main>
+      <BottomNav />
+    </>
+  );
+}

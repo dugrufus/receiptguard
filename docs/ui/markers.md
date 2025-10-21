@@ -26,3 +26,5 @@
 - [RG:BLOCK MSG.THREAD] — Request 16 — Per-case threaded conversation (header, list, composer)
 - [RG:BLOCK MSG.GLOBAL] — Request 16 — Global thread list with search and unread badge
 - [RG:BLOCK MSG.COMPOSE] — Request 16 — Composer with quick replies (Nudge/More info/Confirm)
+
+- **RECALL.INDEX** — Hotfix: Add index route for safety notices. Purpose: resolve /recall 404 and provide list container. Date: 2025-10-20.

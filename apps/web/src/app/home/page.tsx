@@ -1,108 +1,172 @@
 import Link from "next/link";
-import BottomNav from "@/components/rg/BottomNav";
+import { Search, Camera, AlertTriangle, Tag, CalendarRange, Truck, ShoppingBag } from "lucide-react";
 import { Card } from "@/components/rg/Card";
-import { EmptyState } from "@/components/rg/EmptyState";
-import { t } from "@/rg/i18n";
-import { formatAbsDateWithWeekday, formatCurrency } from "@/rg/utils/format";
-import { daysUntilReturnBy, urgencyColor } from "@/rg/utils/return";
-import { getMockPriceDrops, getMockReturnWindows, getMockTracking, getMockPurchases, getMockSafetyNoticesCount } from "@/rg/mocks/loaders";
+import { Pill } from "@/components/rg/Pill";
+import { ListRow } from "@/components/rg/ListRow";
+import { formatCurrency, formatPercentInt, formatAbsDateWithWeekday } from "@/rg/utils/format";
 
 export default function HomePage() {
-  const priceDrops = getMockPriceDrops();
-  const returns = getMockReturnWindows();
-  const tracking = getMockTracking();
-  const purchases = getMockPurchases();
-  const safetyCount = getMockSafetyNoticesCount();
+  const safetyCount = 2;
+
+  const priceDrops = [
+    { id: "p1", title: "Wireless Headphones", total: 159.99, dropRatio: 0.20 },
+    { id: "p2", title: '4K Monitor 27"', total: 279.00, dropRatio: 0.15 },
+  ];
+
+  const returnWindows = [
+    { id: "r1", merchant: "Target",   ends: "2025-10-21" },
+    { id: "r2", merchant: "Best Buy", ends: "2025-10-25" },
+    { id: "r3", merchant: "Amazon",   ends: "2025-10-31" },
+  ];
+
+  const tracking = [
+    { id: "t1", carrier: "UPS",  status: "Out for delivery" },
+    { id: "t2", carrier: "USPS", status: "Arrived at hub" },
+  ];
+
+  const recentPurchases = [
+    { id: "o1", merchant: "Amazon", total: 45.67 },
+    { id: "o2", merchant: "Apple",  total: 1299.00 },
+  ];
 
   return (
-    <>
-      <main className="pb-24 px-4 pt-4 max-w-screen-sm mx-auto" role="main">
-        {/* Header actions */}
-        <div className="flex items-center gap-2 mb-4">
-          <input
-            type="search"
-            placeholder={t("home.header.searchPlaceholder")}
-            aria-label={t("a11y.searchStores")}
-            className="flex-1 rounded-xl border px-3 py-3 min-h-[44px] focus:outline-none focus-visible:ring"
-          />
-          <Link href="/best-price/photo" aria-label={t("buttons.photoSearch")} className="rounded-xl border px-3 py-3 min-h-[44px] focus:outline-none focus-visible:ring">
-            {t("buttons.photoSearch")}
+    <div className="pb-24"> {/* space for bottom nav */}
+      {/* Sticky page header */}
+      <header
+        className="sticky top-0 z-40 border-b border-zinc-200 dark:border-zinc-800
+                   bg-zinc-50/80 dark:bg-zinc-950/70 backdrop-blur"
+      >
+        <div className="mx-auto w-full max-w-screen-sm md:max-w-screen-md px-4 h-14 flex items-center">
+          <h1 className="text-base font-semibold">Home</h1>
+        </div>
+      </header>
+
+      {/* Content */}
+      <main className="mx-auto w-full max-w-screen-sm md:max-w-screen-md px-4 py-4 space-y-4">
+        {/* Top search/actions area (compact) */}
+        <div className="flex items-center gap-3">
+          {/* [RG:BLOCK HOME.SEARCH_BAR START] */}
+          <div className="flex-1">
+            <label htmlFor="store-search" className="sr-only">Search stores</label>
+            <div className="flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 h-11 focus-within:ring-2 focus-within:ring-sky-500">
+              <Search size={18} className="opacity-70" aria-hidden />
+              <input
+                id="store-search"
+                placeholder="Search stores"
+                className="w-full bg-transparent outline-none text-sm text-zinc-900 placeholder:text-zinc-500 dark:text-zinc-100 dark:placeholder:text-zinc-500"
+              />
+            </div>
+          </div>
+          {/* [RG:BLOCK HOME.SEARCH_BAR END] */}
+
+          {/* [RG:BLOCK HOME.PHOTO_BUTTON START] */}
+          <Link
+            href="/best-price/photo"
+            className="inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 h-11 px-4 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+          >
+            <Camera size={18} aria-hidden /> Photo search
           </Link>
+          {/* [RG:BLOCK HOME.PHOTO_BUTTON END] */}
         </div>
 
         {/* Safety notices */}
-        <Card title={t("home.sections.safety.title")} actions={<span className="inline-flex items-center justify-center text-xs rounded-full border px-2 py-0.5">{t("home.sections.safety.count").replace("{count}", String(safetyCount))}</span>}>
-          <Link href="/recall/preview" className="text-sm underline">{t("common.view")}</Link>
+        <Card
+          title="Safety notices"
+          icon={<AlertTriangle size={20} className="text-amber-600 dark:text-amber-400" aria-hidden />}
+          badge={<Pill tone="info">{safetyCount} {safetyCount === 1 ? "notice" : "notices"}</Pill>}
+          pressable
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-zinc-600 dark:text-zinc-400">Check recent recalls and alerts.</span>
+            <Link href="/recall" className="text-xs font-medium underline underline-offset-2 text-sky-600 hover:text-sky-500 dark:text-sky-400 dark:hover:text-sky-300">View</Link>
+          </div>
         </Card>
 
-        <div className="grid gap-4 mt-4">
-          {/* Price Drops */}
-          <Card title={t("home.sections.priceDrops.title")} actions={<Link href="/best-price/results" className="text-sm underline">{t("common.seeAll")}</Link>}>
-            {priceDrops.length === 0 ? <EmptyState message={t("home.empty.priceDrops")} /> : (
-              <ul className="space-y-2">
-                {priceDrops.map(pd => (
-                  <li key={pd.id} className="flex items-center justify-between">
-                    <span className="text-sm">{pd.item}</span>
-                    <span className="text-sm font-medium">{formatCurrency(pd.competitorTotal)} <span className="opacity-60">({pd.dropPercent}%)</span></span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </Card>
+        {/* Price Drops */}
+        <Card
+          title="Price Drops"
+          icon={<Tag size={20} className="text-sky-600 dark:text-sky-400" aria-hidden />}
+          actions={<Link href="/price-drops" className="text-xs font-medium underline underline-offset-2 text-sky-600 hover:text-sky-500 dark:text-sky-400 dark:hover:text-sky-300">See all</Link>}
+        >
+          <div role="list" aria-label="Recent price drops">
+            {priceDrops.map((p) => (
+              <ListRow
+                key={p.id}
+                as="a"
+                href={`/price-drops/${p.id}`}
+                icon={<Tag size={20} aria-hidden />}
+                title={p.title}
+                right={{ value: `${formatCurrency(p.total)} (${formatPercentInt(p.dropRatio)})`, showChevron: true }}
+                className="first:pt-0 last:pb-0"
+              />
+            ))}
+          </div>
+        </Card>
 
-          {/* Return Windows */}
-          <Card title={t("home.sections.returnWindows.title")} actions={<Link href="/return" className="text-sm underline">{t("common.seeAll")}</Link>}>
-            {returns.length === 0 ? <EmptyState message={t("home.empty.returnWindows")} /> : (
-              <ul className="space-y-2">
-                {returns.map(rw => {
-                  const d = daysUntilReturnBy({ returnBy: rw.returnBy });
-                  return (
-                    <li key={rw.id} className="flex items-center justify-between">
-                      <span className="text-sm">{rw.store}</span>
-                      <span className={"text-sm font-medium " + urgencyColor(d)}>{formatAbsDateWithWeekday(rw.returnBy)}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </Card>
+        {/* Return Windows */}
+        <Card
+          title="Return Windows"
+          icon={<CalendarRange size={20} className="text-emerald-600 dark:text-emerald-400" aria-hidden />}
+          actions={<Link href="/return" className="text-xs font-medium underline underline-offset-2 text-sky-600 hover:text-sky-500 dark:text-sky-400 dark:hover:text-sky-300">See all</Link>}
+        >
+          <div role="list" aria-label="Upcoming return windows">
+            {returnWindows.map((r) => (
+              <ListRow
+                key={r.id}
+                as="a"
+                href={`/return/${r.id}`}
+                icon={<CalendarRange size={20} aria-hidden />}
+                title={r.merchant}
+                right={{ value: formatAbsDateWithWeekday(r.ends), showChevron: true }}
+                className="first:pt-0 last:pb-0"
+              />
+            ))}
+          </div>
+        </Card>
 
-          {/* Tracking */}
-          <Card title={t("home.sections.tracking.title")} actions={<Link href="/tracking" className="text-sm underline">{t("common.seeAll")}</Link>}>
-            {tracking.length === 0 ? <EmptyState message={t("home.empty.tracking")} /> : (
-              <ul className="space-y-2">
-                {tracking.map(tr => (
-                  <li key={tr.id} className="flex items-center justify-between">
-                    <span className="text-sm">{tr.carrier}</span>
-                    <span className="text-sm">{tr.status}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </Card>
+        {/* Tracking */}
+        <Card
+          title="Tracking"
+          icon={<Truck size={20} className="text-sky-600 dark:text-sky-400" aria-hidden />}
+          actions={<Link href="/tracking" className="text-xs font-medium underline underline-offset-2 text-sky-600 hover:text-sky-500 dark:text-sky-400 dark:hover:text-sky-300">See all</Link>}
+        >
+          <div role="list" aria-label="Shipments">
+            {tracking.map((t) => (
+              <ListRow
+                key={t.id}
+                as="a"
+                href={`/tracking/${t.id}`}
+                icon={<Truck size={20} aria-hidden />}
+                title={t.carrier}
+                meta={t.status}
+                right={{ showChevron: true }}
+                className="first:pt-0 last:pb-0"
+              />
+            ))}
+          </div>
+        </Card>
 
-          {/* Purchases */}
-          <Card title={t("home.sections.purchases.title")} actions={<Link href="/purchases" className="text-sm underline">{t("common.seeAll")}</Link>}>
-            {purchases.length === 0 ? <EmptyState message={t("home.empty.purchases")} /> : (
-              <ul className="space-y-2">
-                {purchases.map(po => (
-                  <li key={po.id} className="flex items-center justify-between">
-                    <span className="text-sm">{po.store}</span>
-                    <span className="text-sm font-medium">{formatCurrency(po.total)}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </Card>
-        </div>
-
-        {/* Floating Actions */}
-        <div className="fixed right-4 bottom-20 flex flex-col items-end gap-2">
-          <Link href="/add-purchase" className="rounded-full shadow-lg bg-black text-white px-4 py-3 min-h-[44px] focus:outline-none focus-visible:ring">{t("buttons.addPurchase")}</Link>
-          <Link href="/return/combine" className="rounded-full border bg-white px-4 py-2 min-h-[44px] focus:outline-none focus-visible:ring">{t("buttons.combineReturns")}</Link>
-        </div>
+        {/* Purchases */}
+        <Card
+          title="Purchases"
+          icon={<ShoppingBag size={20} className="text-zinc-600 dark:text-zinc-400" aria-hidden />}
+          actions={<Link href="/purchases" className="text-xs font-medium underline underline-offset-2 text-sky-600 hover:text-sky-500 dark:text-sky-400 dark:hover:text-sky-300">See all</Link>}
+        >
+          <div role="list" aria-label="Recent purchases">
+            {recentPurchases.map((o) => (
+              <ListRow
+                key={o.id}
+                as="a"
+                href={`/purchases/${o.id}`}
+                icon={<ShoppingBag size={20} aria-hidden />}
+                title={o.merchant}
+                right={{ value: formatCurrency(o.total), showChevron: true }}
+                className="first:pt-0 last:pb-0"
+              />
+            ))}
+          </div>
+        </Card>
       </main>
-      <BottomNav />
-    </>
+    </div>
   );
 }

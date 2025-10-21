@@ -18,3 +18,4 @@ export function urgencyColor(days: number): 'ok' | 'warn' | 'danger' {
 export function formatAbsolute(d: Date): string {
   return d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
 }
+export function formatAbsDateWithWeekday(i: string|Date){ const d=new Date(i); return Number.isNaN(d.getTime())?String(i):d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }

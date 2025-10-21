@@ -1,30 +1,52 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { t } from "../../rg/i18n";
+import { Home, Activity, History as HistoryIcon, Settings } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const tabs = [
-  { href: "/home", key: "nav.home" },
-  { href: "/activity", key: "nav.activity" },
-  { href: "/history", key: "nav.history" },
-  { href: "/settings", key: "nav.settings" },
-];
+/**
+ * Bottom tab bar (mobile):
+ * - 3–5 items
+ * - label under icon
+ * - active item uses accent color (sky)
+ */
+export function BottomNav() {
+  const pathname = usePathname();
+  const items = [
+    { href: "/home",     label: "Home",     icon: Home },
+    { href: "/activity", label: "Activity", icon: Activity },
+    { href: "/history",  label: "History",  icon: HistoryIcon },
+    { href: "/settings", label: "Settings", icon: Settings },
+  ];
 
-export default function BottomNav() {
-  const path = usePathname() || "";
   return (
-    <nav className="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur border-t z-40" role="navigation" aria-label="Primary">
+    <nav
+      className={cn(
+        "fixed inset-x-0 bottom-0 z-40 md:hidden", // mobile only
+        "border-t border-zinc-200 dark:border-zinc-800",
+        "bg-white/90 dark:bg-zinc-950/80 backdrop-blur"
+      )}
+      aria-label="Primary"
+    >
       <ul className="grid grid-cols-4">
-        {tabs.map((tdef) => {
-          const current = path === tdef.href || (tdef.href !== "/" && path.startsWith(tdef.href));
+        {items.map(({ href, label, icon: Icon }) => {
+          const active = pathname === href;
           return (
-            <li key={tdef.href}>
+            <li key={href} className="contents">
               <Link
-                href={tdef.href}
-                className={"block text-center text-sm py-3 min-h-[44px] focus:outline-none focus-visible:ring " + (current ? "font-semibold" : "text-gray-600")}
-                aria-current={current ? "page" : undefined}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "flex flex-col items-center justify-center gap-1 py-2 h-16", // 64px tap area
+                  "text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500",
+                  active
+                    ? "text-sky-600 dark:text-sky-400"
+                    : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+                )}
               >
-                {t(tdef.key)}
+                <Icon size={20} aria-hidden />
+                <span className="leading-none">{label}</span>
               </Link>
             </li>
           );
